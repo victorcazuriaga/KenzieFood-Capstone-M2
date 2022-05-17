@@ -439,15 +439,15 @@ footer {
     transition: all 0.8s;
   }
   .filters #panificadora:hover {
-    background-color: #f4cabb;
+    background-color: #ff2253;
   }
   .filters #frutas:hover {
     transition: all 0.8s;
-    background-color: #f9d0d9;
+    background-color: #ff2253;
   }
   .filters #bebidas:hover {
     transition: all 0.8s;
-    background-color: #e8caf4;
+    background-color: #ff2253;
   }
 
   /* Products ----------------------------------- */
@@ -462,6 +462,16 @@ footer {
     gap: 26px;
     width: 66%;
     margin-left: 26px;
+  }
+
+  .product-cart:hover {
+    color: #fff;
+    background-color: #0ca678;
+    transition: all 0.4s;
+  }
+
+  .product-image-container:hover {
+    border: 3px solid #ff2253;
   }
 
   .shopping-cart {
@@ -500,6 +510,11 @@ footer {
   }
   .remove-from-cart {
     cursor: pointer;
+  }
+
+  .fa-trash:hover {
+    color: #ff2253;
+    transition: all 0.3s;
   }
 
   footer {
