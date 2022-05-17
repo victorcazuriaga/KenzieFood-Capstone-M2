@@ -1,4 +1,8 @@
+import { Api } from "../modules/Api.js";
+import { Template } from "../modules/Template.js";
+
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
+
 
 const btnShowCartMobile = document.getElementById('btn-show-cart');
 const btnCloseCartMobile = document.getElementById('btn-close-cart');
@@ -16,4 +20,8 @@ btnCloseCartMobile.addEventListener('click', () => {
   mainTag.classList.remove('mobile');
 });
 
+
 //---------------------------------------------------------------------------
+const productsArr= await Api.getPublicProducts()
+
+Template.createProductList( productsArr)
