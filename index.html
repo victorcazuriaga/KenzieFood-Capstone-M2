@@ -19,8 +19,7 @@
       <nav class="nav">
         <div class="logo-container">
           <h3 class="logo">Kenzie <span class="span-logo">Food</span></h3>
-          <button class="menu menu-login" id="menu-mobile">Login
-          </button>
+          <button class="menu menu-login" id="menu-mobile">Login</button>
         </div>
         <div class="search">
           <form action="submit" class="form-search" id="form-search">
@@ -41,9 +40,11 @@
       </nav>
     </header>
 
-    <main class="" id="main">
-      <section id="products-display" class="products-display"> <!-- Produtos serao criados dentro deste div pelo DOM  -->
-        <div class="product">
+    <main class="main" id="main">
+      <section id="products-display" class="products-display">
+        <!-- Produtos serao criados dentro deste div pelo DOM  -->
+        <!-- EXMPLO HTML  -->
+         <div class="product">
           <div class="product-image-container">
             <img src="./src/img/Frame 5.png" alt="" class="product-image"/>
           </div>
@@ -63,8 +64,7 @@
             </div>
           </div>
         </div>
-
-        <div class="product">
+         <div class="product">
           <div class="product-image-container">
             <img src="./src/img/Frame 5.png" alt="" class="product-image"/>
           </div>
@@ -84,8 +84,7 @@
             </div>
           </div>
         </div>
-
-        <div class="product">
+         <div class="product">
           <div class="product-image-container">
             <img src="./src/img/Frame 5.png" alt="" class="product-image"/>
           </div>
@@ -101,7 +100,27 @@
             </ul>
             <div class="product-purcharse">
               <small class="product-price">R$ 20,00</small>
-              <button class="btn-addToCart" id="IDDOPRODUTO"><i  class="fas fa-shopping-cart product-cart"></i></i>
+              <button class="btn-addToCart" id="btn-addToCart"><i  class="fas fa-shopping-cart product-cart"></i></i>
+            </div>
+          </div>
+        </div>
+         <div class="product">
+          <div class="product-image-container">
+            <img src="./src/img/Frame 5.png" alt="" class="product-image"/>
+          </div>
+          <div class="product-details">
+            <h4 class="product-title">Panqueca de banana com aveia</h4>
+            <p class="product-description">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur fugiat
+              consectetur aspernatur, quod minima
+            </p>
+            <ul class="product-categories">
+              <li class="product-category">Panificadora</li>
+              <li class="product-category">Frutas</li>
+            </ul>
+            <div class="product-purcharse">
+              <small class="product-price">R$ 20,00</small>
+              <button class="btn-addToCart" id="btn-addToCart"><i  class="fas fa-shopping-cart product-cart"></i></i>
             </div>
           </div>
         </div>
@@ -110,83 +129,89 @@
       <aside class="shopping-cart" id="shopping-cart">
         <div class="shopping-cart-container">
           <div class="shopping-cart-title">
-            <i  class="fas fa-shopping-cart shopping-cart-icon"></i>
+            <i class="fas fa-shopping-cart shopping-cart-icon"></i>
             <small class="shopping-cart-small">Carrinho</small>
-            <button id="btn-close-cart"><i class="fa-solid fa-xmark shopping-cart-close"></i></button>
+            <button id="btn-close-cart">
+              <i class="fa-solid fa-xmark shopping-cart-close"></i>
+            </button>
           </div>
 
-          <div class="shopping-cart-products"> <!-- Produtos serao criados dentro deste div pelo DOM  -->
+          <div class="shopping-cart-products">
+            <!-- Produtos serao criados dentro deste div pelo DOM  -->
+            <!-- EXEMPLO HTML  -->
             <div class="shopping-cart-product">
               <div class="shopping-div-img">
                 <img src="./src/img/Frame 5.png" alt="" class="cart-product-img">
               </div>
-
               <div class="shopping-div-details">
               <h4 class="cart-product-title">Panqueca de banana</h4>
               <p class="cart-product-category">Panificadora</p>
               <small class="cart-product-price">R$20,00</small>
               </div>
-
               <div class="shopping-div-delete">
                 <button class="remove-from-cart" id="IDDOPRODUTO"><i class="fa fa-trash"></i></button>
-                <input type="number" value="1" onkeydown="return false" class="input-cart-product" id="inputIDDOPRODUTO" min="1" max="10">
               </div>
             </div>
-
             <div class="shopping-cart-product">
               <div class="shopping-div-img">
                 <img src="./src/img/Frame 5.png" alt="" class="cart-product-img">
               </div>
-
               <div class="shopping-div-details">
               <h4 class="cart-product-title">Panqueca de banana</h4>
               <p class="cart-product-category">Panificadora</p>
               <small class="cart-product-price">R$20,00</small>
               </div>
-
               <div class="shopping-div-delete">
                 <button class="remove-from-cart" id="IDDOPRODUTO"><i class="fa fa-trash"></i></button>
-                <input type="number" value="1" onkeydown="return false" class="input-cart-product" id="inputIDDOPRODUTO" min="1" max="10">
               </div>
             </div>
-
             <div class="shopping-cart-product">
               <div class="shopping-div-img">
                 <img src="./src/img/Frame 5.png" alt="" class="cart-product-img">
               </div>
-
               <div class="shopping-div-details">
               <h4 class="cart-product-title">Panqueca de banana</h4>
               <p class="cart-product-category">Panificadora</p>
               <small class="cart-product-price">R$20,00</small>
               </div>
-
               <div class="shopping-div-delete">
                 <button class="remove-from-cart" id="IDDOPRODUTO"><i class="fa fa-trash"></i></button>
-                <input type="number" value="1" onkeydown="return false" class="input-cart-product" id="inputIDDOPRODUTO" min="1" max="10">
+              </div>
+            </div>
+            <div class="shopping-cart-product">
+              <div class="shopping-div-img">
+                <img src="./src/img/Frame 5.png" alt="" class="cart-product-img">
+              </div>
+              <div class="shopping-div-details">
+              <h4 class="cart-product-title">Panqueca de banana</h4>
+              <p class="cart-product-category">Panificadora</p>
+              <small class="cart-product-price">R$20,00</small>
+              </div>
+              <div class="shopping-div-delete">
+                <button class="remove-from-cart" id="IDDOPRODUTO"><i class="fa fa-trash"></i></button>
               </div>
             </div>
           </div>
 
           <div class="shopping-amount">
             <small>Quantidade:</small>
-            <span>10</span>
+            <span id="span-amount">10</span>
           </div>
 
           <div class="shopping-value">
             <small>Valor:</small>
-            <span>R$ 200,00</span>
+            <span id="span-value">R$ 200,00</span>
           </div>
         </div>
       </aside>
 
       <button class="btn-show-cart" id="btn-show-cart">
-        <i  class="fas fa-shopping-cart btn-cart-icon"></i>
+        <i class="fas fa-shopping-cart btn-cart-icon"></i>
         <small class="btn-cart-small">Carrinho</small>
       </button>
     </main>
 
-    <!-- <header class="header-desktop"></header>  sei n se vai precisar-->
+    <footer></footer>
     <script src="./src/script/script.js"></script>
   </body>
 </html>

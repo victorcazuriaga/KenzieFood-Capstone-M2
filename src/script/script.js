@@ -7,12 +7,12 @@ const shoppingCart = document.getElementById('shopping-cart');
 const mainTag = document.getElementById('main');
 
 btnShowCartMobile.addEventListener('click', () => {
-  shoppingCart.classList.add('mobile');
+  shoppingCart.classList.add('show');
   mainTag.classList.add('mobile');
 });
 
 btnCloseCartMobile.addEventListener('click', () => {
-  shoppingCart.classList.remove('mobile');
+  shoppingCart.classList.remove('show');
   mainTag.classList.remove('mobile');
 });
 
