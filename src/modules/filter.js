@@ -1,3 +1,5 @@
+import { Template } from "../modules/Template.js";
+
 export class Filter {
     static filterByInput(input, data) {
       let inputText = input.toLowerCase();
@@ -21,7 +23,17 @@ export class Filter {
       });
       return filterdedData;
     }
-  }
+    //----------------Função filtro dinamico searchBar--------
+    static showFiltered (arrProducts){
+    const htmlString = arrProducts.map((arrProducts)=>{
+        return `${arrProducts.nome}
+        ${arrProducts.categoria}
+        ${arrProducts.imagem}`
+        })
+    .join('');
+    Template.createProductList(arrProducts)
+    }       
+}
   
 
 

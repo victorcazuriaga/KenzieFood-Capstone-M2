@@ -62,7 +62,7 @@ categoryButtons.forEach(btn => {
 });
 
 //---------- Filtro pela barra de pesquisa--------------------------------
-const divMain = document.getElementById('main')
+//const divMain = document.getElementById('main')
 
 const searchBar = document.getElementsByClassName('input-search')[0];
 
@@ -77,17 +77,9 @@ searchBar.addEventListener('keyup',(e)=>{
             products.categoria.toLowerCase().includes(searchString)
         )
     })
-    showFiltered(filteredProducts)
+    Filter.showFiltered(filteredProducts)
 });
-const showFiltered = (arrProducts)=>{
-    const htmlString = arrProducts.map((arrProducts)=>{
-        return `${arrProducts.nome}
-                ${arrProducts.categoria}
-                ${arrProducts.imagem}`
-    })
-    .join('');
-    Template.createProductList(arrProducts)
-}
+
 
 
 
