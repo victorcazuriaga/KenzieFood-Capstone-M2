@@ -1,22 +1,26 @@
-import { Filter } from "../modules/filter.js";
-import { Api } from "../modules/Api.js";
-import { Template } from "../modules/Template.js";
-import { Cart } from "../modules/cart.js";
+import {Filter} from '../modules/filter.js';
+import {Api} from '../modules/Api.js';
+import {Template} from '../modules/Template.js';
+import {Storage} from '../modules/localStorage.js';
 
-
-
+Storage.getLocalStorage();
+Storage.localStorageRender();
 //Const
 //
 // if(token){
-//  vai ter que mudar o botao de login => logout
+//  vai ter que mudar o botao de login => logout <---
 //  data do carrinho API
+//  redenrizar o carrinho pela localstorage --------------------------
+//  logado => addtocart manda pra API -------------------------------
+//  logado => deleteFromCart remove da API ---------------------------
+//} else {
+//  //redenrizar o carrinho pela localstorage
 // }
+
 const productsArr = await Api.getPublicProducts();
 Template.createProductList(productsArr);
 
-
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
-
 
 const btnShowCartMobile = document.getElementById('btn-show-cart');
 const btnCloseCartMobile = document.getElementById('btn-close-cart');
@@ -34,8 +38,6 @@ btnCloseCartMobile.addEventListener('click', () => {
   mainTag.classList.remove('mobile');
 });
 
-
-//---------------------------------------------------------------------------
 //Botoes de filtro por categoria----------------------------------
 const categoryButtons = document.querySelectorAll('.filter');
 
@@ -61,22 +63,16 @@ categoryButtons.forEach(btn => {
   });
 });
 
-//------------------button Add To Cart -------------------------
-
-const buttonAddToCart = document.querySelectorAll('.btn-addToCart');
-
-buttonAddToCart.forEach( button => {
-  button.addEventListener('click',  event => {
-    const productId = event.currentTarget.id;
-    const product = Filter.filterById(productId, productsArr);
-
-    Template.addToCart(product);
-   Cart.cartItemList.push(...product)
-   Cart.cartQuantity.innerText=`${Cart.cartItemList.length}`
-    Cart.priceCar.innerText=`R$ ${Cart.priceCarSum+= product[0].preco}` 
-  });
+//---------- Filtro pela barra de pesquisa--------------------------------
+const searchBar = document.getElementsByClassName('input-search')[0];
+let arrProducts = []
+searchBar.addEventListener('keyup',(e)=>{
+    const searchString = e.target.value.toLowerCase()
+    const filteredProducts = productsArr.filter((products)=>{
+        return (
+            products.nome.toLowerCase().includes(searchString) ||
+            products.categoria.toLowerCase().includes(searchString)
+        )
+    })
+    Filter.showFiltered(filteredProducts)
 });
-Cart.cartQuantity.innerText=0
-Cart.priceCar.innerText=`R$ 0` 
-console.log(productsArr)
-
