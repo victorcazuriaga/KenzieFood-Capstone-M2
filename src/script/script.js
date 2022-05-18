@@ -61,6 +61,36 @@ categoryButtons.forEach(btn => {
   });
 });
 
+//---------- Filtro pela barra de pesquisa--------------------------------
+const divMain = document.getElementById('main')
+
+const searchBar = document.getElementsByClassName('input-search')[0];
+
+
+let arrProducts = []
+searchBar.addEventListener('keyup',(e)=>{
+    const searchString = e.target.value.toLowerCase()
+
+    const filteredProducts = productsArr.filter((products)=>{
+        return (
+            products.nome.toLowerCase().includes(searchString) ||
+            products.categoria.toLowerCase().includes(searchString)
+        )
+    })
+    showFiltered(filteredProducts)
+});
+const showFiltered = (arrProducts)=>{
+    const htmlString = arrProducts.map((arrProducts)=>{
+        return `${arrProducts.nome}
+                ${arrProducts.categoria}
+                ${arrProducts.imagem}`
+    })
+    .join('');
+    Template.createProductList(arrProducts)
+}
+
+
+
 //------------------button Add To Cart -------------------------
 
 const buttonAddToCart = document.querySelectorAll('.btn-addToCart');
@@ -78,5 +108,5 @@ buttonAddToCart.forEach( button => {
 });
 Cart.cartQuantity.innerText=0
 Cart.priceCar.innerText=`R$ 0` 
-console.log(productsArr)
+//console.log(productsArr)
 
