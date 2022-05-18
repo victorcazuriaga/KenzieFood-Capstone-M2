@@ -1,5 +1,6 @@
 import {Api} from './Api.js';
-
+import {Filter} from './filter.js';
+import {Storage} from './localStorage.js';
 export class Template {
   static prodctsDisplay = document.getElementById('products-display');
   static cartItemList = [];
@@ -63,50 +64,122 @@ export class Template {
       productPurcharse.appendChild(addToCartButton);
       addToCartButton.appendChild(carrIcon);
     }
+
+    Template.buttonAddEventListener(productsArr);
   }
+
+  //----------------------------------AddToCart
+
   static addToCart(product) {
-    if (this.validationLogin() === true) {
-      console.log(product);
-      product.forEach(({nome, preco, categoria, imagem}) => {
-        const productContainer = document.querySelector('.shopping-cart-products');
-        const seletorImg = document.querySelector('.shopping-div-img');
-        const seletorDetails = document.querySelector('.shopping-div-details');
-        const seletorDelete = document.querySelector('.shopping-div-delete');
-        //create elements
-        const cartProduct = document.createElement('div');
-        cartProduct.className = 'shopping-cart-product';
-        const img = document.createElement('img');
-        const h4 = document.createElement('h4');
-        const p = document.createElement('p');
-        const small = document.createElement('small');
-        const button = document.createElement('button');
-        const input = document.createElement('input');
-        //Atribuições
-        img.src = imagem;
-        console.log(img);
-        img.className = 'cart-product-img';
-        h4.textContent = nome;
-        h4.className = 'cart-product-title';
-        p.textContent = categoria;
-        p.className = 'cart-product-category';
-        small.textContent = preco;
-        small.className = 'cart-product-price';
+    Storage.addToLocalStorage(product);
 
-        //apeend
+    const item = product[0];
+    const {nome, preco, categoria, imagem, id} = item;
 
-        seletorImg.appendChild(img);
-        seletorDetails.appendChild(h4);
-        seletorDetails.appendChild(p);
-        seletorDetails.appendChild(small);
+    //create elements
+    const cartProduct = document.createElement('div');
+    const shoppingDivImg = document.createElement('div');
+    const shoppingDivDetails = document.createElement('div');
+    const shoppingDivDelete = document.createElement('div');
 
-        cartProduct.appendChild(seletorImg);
-        cartProduct.appendChild(seletorDetails);
-        productContainer.appendChild(cartProduct);
-        console.log('testefunçao');
-        Api.cartItemList.push(product);
+    const img = document.createElement('img');
+
+    const h4 = document.createElement('h4');
+    const p = document.createElement('p');
+    const small = document.createElement('small');
+
+    const button = document.createElement('button');
+    const i = document.createElement('i');
+
+    //Atribuições
+    cartProduct.className = 'shopping-cart-product';
+    shoppingDivImg.className = 'shopping-div-img';
+    shoppingDivDetails.className = 'shopping-div-details';
+    shoppingDivImg.className = 'shopping-div-img';
+
+    img.src = imagem;
+    img.className = 'cart-product-img';
+
+    h4.textContent = nome;
+    h4.className = 'cart-product-title';
+    p.textContent = categoria;
+    p.className = 'cart-product-category';
+    small.textContent = `R$ ${preco.toFixed(2)}`;
+    small.className = 'cart-product-price';
+
+    button.className = 'remove-from-cart';
+    button.id = id;
+    i.className = 'fa fa-trash';
+
+    button.append(i);
+
+    button.addEventListener('click', event => {
+      const button = event.currentTarget;
+      Template.removeFromCart(button);
+    });
+
+    //append
+    shoppingDivImg.append(img);
+    shoppingDivDetails.append(h4, p, small);
+    shoppingDivDelete.append(button);
+
+    cartProduct.append(shoppingDivImg, shoppingDivDetails, shoppingDivDelete);
+    document.querySelector('.shopping-cart-products').append(cartProduct);
+
+    //calcular quantidade
+    const quantity = Template.getQuantity();
+    Template.setQuantity(quantity);
+
+    //calcular o valor
+    Template.setValue();
+  }
+
+  static removeFromCart(target) {
+    const divToDelete = target.closest('.shopping-cart-product');
+    divToDelete.remove();
+
+    const quantity = Template.getQuantity();
+    Template.setQuantity(quantity);
+
+    Template.setValue();
+
+    const id = target.id;
+    Storage.removeFromLocalStorage(id);
+  }
+
+  static getQuantity() {
+    const div = document.querySelector('.shopping-cart-products');
+    const quantity = div.children.length;
+    return quantity;
+  }
+
+  static setQuantity(valor) {
+    const quantitySpan = document.getElementById('span-amount');
+    quantitySpan.innerText = valor;
+  }
+
+  static setValue() {
+    const valores = document.querySelectorAll('.cart-product-price');
+    const smallValue = document.getElementById('span-value');
+    let valorTotal = 0;
+
+    valores.forEach(valor => {
+      let valorSomar = valor.innerText;
+      let sliced = valorSomar.slice(3);
+      valorTotal += Number(sliced);
+    });
+    smallValue.innerText = valorTotal.toFixed(2);
+  }
+
+  static buttonAddEventListener(productsArr) {
+    const buttonAddToCart = document.querySelectorAll('.btn-addToCart');
+
+    buttonAddToCart.forEach(button => {
+      button.addEventListener('click', event => {
+        const productId = event.currentTarget.id;
+        const product = Filter.filterById(productId, productsArr);
+        Template.addToCart(product);
       });
-    } else {
-      //localStorage
-    }
+    });
   }
 }

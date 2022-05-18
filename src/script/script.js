@@ -1,9 +1,24 @@
 import {Filter} from '../modules/filter.js';
 import {Api} from '../modules/Api.js';
 import {Template} from '../modules/Template.js';
+import {Storage} from '../modules/localStorage.js';
 
+Storage.getLocalStorage();
+Storage.localStorageRender();
 //Const
+//
+// if(token){
+//  vai ter que mudar o botao de login => logout <---
+//  data do carrinho API
+//  redenrizar o carrinho pela localstorage --------------------------
+//  logado => addtocart manda pra API -------------------------------
+//  logado => deleteFromCart remove da API ---------------------------
+//} else {
+//  //redenrizar o carrinho pela localstorage
+// }
+
 const productsArr = await Api.getPublicProducts();
+Template.createProductList(productsArr);
 
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
 
@@ -39,8 +54,6 @@ function filterByCategory(targetId) {
   }
 }
 
-console.log(Filter.filterByInput('bebidas', productsArr));
-
 categoryButtons.forEach(btn => {
   btn.addEventListener('click', event => {
     removeSelected();
@@ -50,19 +63,6 @@ categoryButtons.forEach(btn => {
   });
 });
 
-//---------------------------------------------------------------------------
+//------------------button Add To Cart -------------------------
 
-const buttonAddToCart = document.querySelector('.btn-addToCart');
-
-/* buttonAddToCart.addEventListener("click", () => {
-  console.log("teste")
-Api.addToCart([{
-    imagem: "https://www.dinamize.com.br/wp-content/uploads/2018/08/instagram-dimensoes-redes-sociais-min.png",
-    nome: "teste",
-    categoria: "testeCategoria",
-    preco: "20"
-  }])
-  // colocar GET da API carinho 
-})   */
-//console.log(Api.cartItemList);
-Template.createProductList(productsArr);
+//-----------------------teste-------------------------

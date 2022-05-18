@@ -1,3 +1,4 @@
+import {Template} from './Template.js';
 export class Filter {
   static filterByInput(input, data) {
     let inputText = input.toLowerCase();
@@ -7,6 +8,15 @@ export class Filter {
       const catProduto = product.categoria.toLowerCase();
 
       if (nomeProduto.includes(inputText) || catProduto.includes(inputText)) {
+        return true;
+      }
+    });
+    return filterdedData;
+  }
+
+  static filterById(idProduto, data) {
+    const filterdedData = data.filter(product => {
+      if (product.id.includes(idProduto)) {
         return true;
       }
     });

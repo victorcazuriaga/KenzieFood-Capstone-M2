@@ -328,7 +328,7 @@ body {
   height: 100%;
 }
 .cart-product-title {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .cart-product-category {
@@ -407,6 +407,10 @@ main.mobile::before {
   height: 100%;
   background-color: #000;
   opacity: 0.8;
+}
+
+.fa-trash {
+  color: #868e96;
 }
 
 /* -------------------------------Footer------------------ */
