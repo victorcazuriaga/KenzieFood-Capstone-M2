@@ -1,12 +1,15 @@
-import { Api } from "./Api.js";
+
+import { Cart } from "./cart.js";
 
 export class Template {
 
     static prodctsDisplay = document.getElementById('products-display')
-    static cartItemList = [];
-
+   
 
     static createProductList(productsArr) {
+
+      Template.prodctsDisplay.innerHTML = '';
+
         for (let i = 0; i < productsArr.length; i++) {
 
             /* Criando as tags para cada produto */
@@ -70,52 +73,60 @@ export class Template {
         }
 
     }
+
     static addToCart(product) {
-        if (this.validationLogin() === true) {
-          console.log(product)
-          product.forEach(({ nome, preco, categoria, imagem }) => {
-            const productContainer = document.querySelector(".shopping-cart-products")
-            const seletorImg = document.querySelector(".shopping-div-img")
-            const seletorDetails = document.querySelector(".shopping-div-details")
-            const seletorDelete = document.querySelector(".shopping-div-delete")
-            //create elements
-            const cartProduct = document.createElement("div")
-            cartProduct.className = "shopping-cart-product"
-            const img = document.createElement("img")
-            const h4 = document.createElement("h4")
-            const p = document.createElement("p")
-            const small = document.createElement("small")
-            const button = document.createElement("button")
-            const input = document.createElement("input")
-            //Atribuições
-            img.src = imagem
-            console.log(img)
-            img.className = "cart-product-img"
-            h4.textContent = nome
-            h4.className = "cart-product-title"
-            p.textContent = categoria
-            p.className = "cart-product-category"
-            small.textContent = preco
-            small.className = "cart-product-price"
     
-            //apeend
+    const item = product[0];
+    const {nome, preco, categoria, imagem} = item;
+
+    //create elements
+    const cartProduct = document.createElement('div');
+    const shoppingDivImg = document.createElement('div');
+    const shoppingDivDetails = document.createElement('div');
+    const shoppingDivDelete = document.createElement('div');
+
+    const img = document.createElement('img');
+
+    const h4 = document.createElement('h4');
+    const p = document.createElement('p');
+    const small = document.createElement('small');
+
+    const button = document.createElement('button');
+    const i = document.createElement('i');
+
+    //Atribuições
+    cartProduct.className = 'shopping-cart-product';
+    shoppingDivImg.className = 'shopping-div-img';
+    shoppingDivDetails.className = 'shopping-div-details';
+    shoppingDivImg.className = 'shopping-div-img';
+
+    img.src = imagem;
+    img.className = 'cart-product-img';
+
+    h4.textContent = nome;
+    h4.className = 'cart-product-title';
+    p.textContent = categoria;
+    p.className = 'cart-product-category';
+    small.textContent = preco;
+    small.className = 'cart-product-price';
+
+    button.className = 'shopping-div-delete';
+    i.className = 'fa fa-trash';
+
+    //Adicionar funcao para a lixeirinha
+
+    //append
+    shoppingDivImg.append(img);
+    shoppingDivDetails.append(h4, p, small);
+    shoppingDivDelete.append(button, i);
+
+    cartProduct.append(shoppingDivImg, shoppingDivDetails, shoppingDivDelete);
+    document.querySelector('.shopping-cart-products').append(cartProduct);
+  
+  
+
     
-            seletorImg.appendChild(img)
-            seletorDetails.appendChild(h4)
-            seletorDetails.appendChild(p)
-            seletorDetails.appendChild(small)
-    
-            cartProduct.appendChild(seletorImg)
-            cartProduct.appendChild(seletorDetails)
-            productContainer.appendChild(cartProduct)
-            console.log("testefunçao")
-            Api.cartItemList.push(product)
-    
-          })
-    
-        } else {
-          //localStorage
-        }
+         
     
 }
 }

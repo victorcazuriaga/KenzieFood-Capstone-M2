@@ -1,5 +1,19 @@
+import { Filter } from "../modules/filter.js";
 import { Api } from "../modules/Api.js";
 import { Template } from "../modules/Template.js";
+import { Cart } from "../modules/cart.js";
+
+
+
+//Const
+//
+// if(token){
+//  vai ter que mudar o botao de login => logout
+//  data do carrinho API
+// }
+const productsArr = await Api.getPublicProducts();
+Template.createProductList(productsArr);
+
 
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
 
@@ -22,18 +36,47 @@ btnCloseCartMobile.addEventListener('click', () => {
 
 
 //---------------------------------------------------------------------------
-const productsArr= await Api.getPublicProducts()
-const buttonAddToCart = document.querySelector(".btn-addToCart");
+//Botoes de filtro por categoria----------------------------------
+const categoryButtons = document.querySelectorAll('.filter');
 
-/* buttonAddToCart.addEventListener("click", () => {
-  console.log("teste")
-Api.addToCart([{
-    imagem: "https://www.dinamize.com.br/wp-content/uploads/2018/08/instagram-dimensoes-redes-sociais-min.png",
-    nome: "teste",
-    categoria: "testeCategoria",
-    preco: "20"
-  }])
-  // colocar GET da API carinho 
-})   */
-console.log(Api.cartItemList)
-Template.createProductList( productsArr) 
+function removeSelected() {
+  categoryButtons.forEach(button => button.classList.remove('selected'));
+}
+
+function filterByCategory(targetId) {
+  if (targetId == 'todos') {
+    Template.createProductList(productsArr);
+  } else {
+    const filteredArr = Filter.filterByInput(targetId, productsArr);
+    Template.createProductList(filteredArr);
+  }
+}
+
+categoryButtons.forEach(btn => {
+  btn.addEventListener('click', event => {
+    removeSelected();
+    event.currentTarget.classList.add('selected');
+    const filter = event.currentTarget.id;
+    filterByCategory(filter);
+  });
+});
+
+//------------------button Add To Cart -------------------------
+
+const buttonAddToCart = document.querySelectorAll('.btn-addToCart');
+
+buttonAddToCart.forEach( button => {
+  button.addEventListener('click',  event => {
+    const productId = event.currentTarget.id;
+    const product = Filter.filterById(productId, productsArr);
+
+    Template.addToCart(product);
+   Cart.cartItemList.push(...product)
+   Cart.cartQuantity.innerText=`${Cart.cartItemList.length}`
+    Cart.priceCar.innerText=`R$ ${Cart.priceCarSum+= product[0].preco}` 
+  });
+});
+Cart.cartQuantity.innerText=0
+Cart.priceCar.innerText=`R$ 0` 
+console.log(productsArr)
+
