@@ -2,11 +2,11 @@
 
 export class Template {
 
-    static prodctsDisplay = document.getElementById('products-display')
+    static productsDisplay = document.getElementById('products-display')
 
     static createProductList(productsArr) {
         for (let i = 0; i < productsArr.length; i++) {
-
+            
             /* Criando as tags para cada produto */
 
             const productCard = document.createElement('div')
@@ -51,7 +51,7 @@ export class Template {
 
             /* Dando appendChild */
 
-            Template.prodctsDisplay.appendChild(productCard)
+            Template.productsDisplay.appendChild(productCard)
             productCard.appendChild(imageContainer)
             imageContainer.appendChild(productImage)
             productCard.appendChild(productDetails)
@@ -67,5 +67,7 @@ export class Template {
 
         }
 
-    }
+    }   
+    
 }
+
