@@ -62,11 +62,7 @@ categoryButtons.forEach(btn => {
 });
 
 //---------- Filtro pela barra de pesquisa--------------------------------
-//const divMain = document.getElementById('main')
-
 const searchBar = document.getElementsByClassName('input-search')[0];
-
-
 let arrProducts = []
 searchBar.addEventListener('keyup',(e)=>{
     const searchString = e.target.value.toLowerCase()
