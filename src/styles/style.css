@@ -96,19 +96,27 @@ body {
   border-radius: 32px;
 }
 
-.filters .filter.selected {
-  background-color: #ff2253;
-  color: #fff;
+.selected {
+  background-color: #ff2253 !important;
+  color: #fff !important;
 }
 
+.filters #todos {
+  background-color: #aaddce;
+  color: #000;
+}
+
+.filters #todos:hover {
+  background-color: #ff2253;
+  color: #fff;
+  transition: all 0.3s;
+}
 .filters #panificadora {
   background-color: #fff7f4;
 }
-
 .filters #frutas {
   background-color: #fff1f4;
 }
-
 .filters #bebidas {
   background-color: #f3eef5;
 }
@@ -150,8 +158,8 @@ body {
 .product .product-image {
   width: 298px;
   height: 200px;
-  border-radius: 8px;
   object-fit: cover;
+  border-radius: 6px;
 }
 
 .product:hover {
@@ -319,7 +327,6 @@ body {
   align-items: flex-start;
   height: 100%;
 }
-
 .cart-product-title {
   font-size: 14px;
 }
@@ -454,16 +461,13 @@ footer {
     background-color: #f8e0d7;
     transition: all 0.8s;
   }
-
   .filters #panificadora:hover {
     background-color: #ff2253;
   }
-
   .filters #frutas:hover {
     transition: all 0.8s;
     background-color: #ff2253;
   }
-
   .filters #bebidas:hover {
     transition: all 0.8s;
     background-color: #ff2253;
@@ -523,7 +527,6 @@ footer {
   .btn-addToCart {
     background-color: #fafafa;
   }
-
   .remove-from-cart {
     cursor: pointer;
   }

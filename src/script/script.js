@@ -1,8 +1,11 @@
-import { Api } from "../modules/Api.js";
-import { Template } from "../modules/Template.js";
+import {Filter} from '../modules/filter.js';
+import {Api} from '../modules/Api.js';
+import {Template} from '../modules/Template.js';
+
+//Const
+const productsArr = await Api.getPublicProducts();
 
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
-
 
 const btnShowCartMobile = document.getElementById('btn-show-cart');
 const btnCloseCartMobile = document.getElementById('btn-close-cart');
@@ -20,10 +23,36 @@ btnCloseCartMobile.addEventListener('click', () => {
   mainTag.classList.remove('mobile');
 });
 
+//Botoes de filtro por categoria----------------------------------
+const categoryButtons = document.querySelectorAll('.filter');
+
+function removeSelected() {
+  categoryButtons.forEach(button => button.classList.remove('selected'));
+}
+
+function filterByCategory(targetId) {
+  if (targetId == 'todos') {
+    Template.createProductList(productsArr);
+  } else {
+    const filteredArr = Filter.filterByInput(targetId, productsArr);
+    Template.createProductList(filteredArr);
+  }
+}
+
+console.log(Filter.filterByInput('bebidas', productsArr));
+
+categoryButtons.forEach(btn => {
+  btn.addEventListener('click', event => {
+    removeSelected();
+    event.currentTarget.classList.add('selected');
+    const filter = event.currentTarget.id;
+    filterByCategory(filter);
+  });
+});
 
 //---------------------------------------------------------------------------
-const productsArr= await Api.getPublicProducts()
-const buttonAddToCart = document.querySelector(".btn-addToCart");
+
+const buttonAddToCart = document.querySelector('.btn-addToCart');
 
 /* buttonAddToCart.addEventListener("click", () => {
   console.log("teste")
@@ -35,5 +64,5 @@ Api.addToCart([{
   }])
   // colocar GET da API carinho 
 })   */
-console.log(Api.cartItemList)
-Template.createProductList( productsArr) 
+//console.log(Api.cartItemList);
+Template.createProductList(productsArr);
