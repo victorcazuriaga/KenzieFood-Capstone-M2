@@ -141,6 +141,7 @@ btnRedicionaLogin.addEventListener('click', event => {
 const searchBar = document.getElementsByClassName('input-search')[0];
 let arrProducts = []
 searchBar.addEventListener('keyup',(e)=>{
+ 
     const searchString = e.target.value.toLowerCase()
     const filteredProducts = productsArr.filter((products)=>{
         return (
