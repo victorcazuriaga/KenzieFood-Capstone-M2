@@ -19,15 +19,20 @@
       <nav class="nav">
         <div class="logo-container">
           <h3 class="logo">Kenzie <span class="span-logo">Food</span></h3>
-          <form action="submit" class="form-search" id="form-search">
+          <div class="form-search" id="form-search">
             <input
               type="text"
               class="input-search"
               placeholder="&#xF002; Pesquisar por Produto"
               style="font-family: 'Poppins', FontAwesome"
             />
-          </form>
-          <button class="profile" id="profile"><i class="fas fa-user"></i></button>
+          </div>
+          <div class="btn-profile-container">
+            <button class="profile" id="profile"><i class="fas fa-user"></i></button>
+            <div class="div-links display-none">
+              <a class="link" href="../../index.html" id="pagina-inicial">Pagina Inicial</a>
+            </div>
+          </div>
         </div>
 
         <div class="container-filters">
@@ -53,62 +58,34 @@
           <p class="ações">Ações</p>
         </div>
 
-        <div class="product-container" >
+        <div class="product-container">
           <!-- Produtos vao aqui dentro-->
-          <!-- <div class="container">
-            <div class="title-img">
-              <img src="../img/Frame 5.png" class="img" />
-              <p class="product-title">Panqueca de banana com aveia</p>
-            </div>
-            <div class="product-category">
-              <span class="category">Bebidas</span><span class="category">Bebidas</span>
-            </div>
-            <p class="product-description">Esta receita serve muito bem duas pessoas...</p>
-            <div class="product-actions">
-              <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-          <div class="container">
-            <div class="title-img">
-              <img src="../img/Frame 5.png" class="img" />
-              <p class="product-title">Panqueca de banana com aveia</p>
-            </div>
-            <div class="product-category">
-              <span class="category">Bebidas</span><span class="category">Bebidas</span>
-            </div>
-            <p class="product-description">Esta receita serve muito bem duas pessoas...</p>
-            <div class="product-actions">
-              <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-          <div class="container">
-            <div class="title-img">
-              <img src="../img/Frame 5.png" class="img" />
-              <p class="product-title">Panqueca de banana com aveia</p>
-            </div>
-            <div class="product-category">
-              <span class="category">Bebidas</span><span class="category">Bebidas</span>
-            </div>
-            <p class="product-description">Esta receita serve muito bem duas pessoas...</p>
-            <div class="product-actions">
-              <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-          <div class="container">
-            <div class="title-img">
-              <img src="../img/Frame 5.png" class="img" />
-              <p class="product-title">Panqueca de banana com aveia</p>
-            </div>
-            <div class="product-category">
-              <span class="category">Bebidas</span><span class="category">Bebidas</span>
-            </div>
-            <p class="product-description">Esta receita serve muito bem duas pessoas...</p>
-            <div class="product-actions">
-              <i class="fa-solid fa-pen-to-square"></i><i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
-        </div> -->
+
+        </div>
       </section>
+
+      <aside class="container-popup display-none" id="popup-novoProduto">
+        <div class="title-popup">
+          <h4 class="h4-popup">Cadastrar novo produto</h4>
+          <button class="btn-popup" id="close-novoProduto">
+            <i class="fa fa-window-close" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <form action="" class="form" id="form-">
+          <input class="form-input" type="text" placeholder="Nome do produto" required />
+          <input class="form-input" type="text" placeholder="Descricao" required />
+          <label for="Categoria">Selecione a Categoria:</label>
+          <select name="" id="select-form-novoProduto">
+            <option value="Panificadora">Panificadora</option>
+            <option value="Frutas">Frutas</option>
+            <option value="Bebidas">Bebidas</option>
+          </select>
+          <input class="form-input" type="number" placeholder="Valor do Produto" required />
+          <input class="form-input" type="text" placeholder="Link da imagem" required />
+          <button type="submit" class="form-submit-btn">Cadastrar Produto</button>
+        </form>
+      </aside>
     </main>
 
     <script type="module" src="../script/dashboard.js"></script>

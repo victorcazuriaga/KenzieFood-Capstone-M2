@@ -1,69 +1,28 @@
+import {Api} from './Api.js';
 import {Template} from './Template.js';
 
-export class Storage {
-  static getLocalStorage() {
-    if (!localStorage.getItem('productsCart')) {
-      let localStorageContent = [];
-      localStorageContent = JSON.stringify(localStorageContent);
-      localStorage.setItem('productsCart', localStorageContent);
-    }
-    if (localStorage.getItem('productsCart')) {
-      let arrObj = localStorage.getItem('productsCart');
-      arrObj = JSON.parse(arrObj);
-    }
+export class productsApi {
+  static token = sessionStorage.getItem('token');
+
+  static async getCartItens() {
+    await Api.cartGet(this.token).then(res => productsApi.renderFromCart(res));
   }
 
-  static addToLocalStorage(obj) {
-    let getArr = localStorage.getItem('productsCart');
-    let arrProducts = JSON.parse(getArr);
+  static renderFromCart(arrProdutos) {
+    arrProdutos.forEach(product => {
+      const item = product.products;
+      const {nome, preco, categoria, imagem, id} = item;
 
-    arrProducts.push(obj);
-    arrProducts = JSON.stringify(arrProducts);
-    localStorage.setItem('productsCart', arrProducts);
-  }
-
-  static removeFromLocalStorage(id) {
-    let getArr = localStorage.getItem('productsCart');
-    let arrProducts = JSON.parse(getArr);
-    let index;
-
-    while (arrProducts.some(product => product[0].id == id)) {
-      for (let i = 0; i < arrProducts.length; i++) {
-        if (arrProducts[i][0].id == id) {
-          index = i;
-          arrProducts.splice(index, 1);
-        }
-      }
-    }
-
-    arrProducts = JSON.stringify(arrProducts);
-    localStorage.setItem('productsCart', arrProducts);
-  }
-
-  static localStorageRender() {
-    document.querySelector('.shopping-cart-products').innerHTML = '';
-
-    let getArr = localStorage.getItem('productsCart');
-    let arrProducts = JSON.parse(getArr);
-
-    let arrMapeada = arrProducts.map(product => product[0]);
-
-    arrMapeada.forEach(produto => {
-      const {nome, preco, categoria, imagem, id} = produto;
-
-      //Verificacao do produto
+      //Verificacao do produto--------------------------
       const verificacao = document.getElementById(`qnt${id}`);
       if (verificacao) {
         let qntAtual = +verificacao.innerText;
         qntAtual++;
         verificacao.innerText = qntAtual;
-
         let quantidade = Template.getQuantity();
 
         Template.setQuantity(quantidade);
-
         Template.setValue();
-
         return;
       }
 
@@ -119,10 +78,15 @@ export class Storage {
         Template.removeFromCart(button);
       });
 
-      //append
+      //Append
       shoppingDivImg.append(img);
       shoppingDivDetails.append(h4, p, small);
       shoppingDivDelete.append(button, pQnt);
+
+      //verifica qnt de produtos
+      if (product.quantity) {
+        smallQnt.innerText = product.quantity;
+      }
 
       cartProduct.append(shoppingDivImg, shoppingDivDetails, shoppingDivDelete);
       document.querySelector('.shopping-cart-products').append(cartProduct);
