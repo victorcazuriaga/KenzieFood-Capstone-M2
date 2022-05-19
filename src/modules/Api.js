@@ -1,6 +1,6 @@
 export class Api {
 
-    static token = ""
+    static token = ''
 
     /*  Pegando os produtos criados */
     static getPublicProducts() {
@@ -40,27 +40,8 @@ export class Api {
 
         return response;
 
-        /*   Se o user já existir vai retornar uma mensagem(string) escrita "User Already Exists!"
-
-          Se não
-          for passado nada no email / uma string vazia, irá retornar o seguinta objeto {
-              status: 'Error',
-              message: 'Validation error: Campo email não pode ser vazio,\
-              nValidation error: Deve ser um email valido '} (a senha e o nome podem ser uma string 
-              vazia / nada,
-              porém não poderá faltar o email,
-              se quisermos mudar isso para não permitir o cadastro de pessoas que não
-              colocaram nome nem senha na hora de registrar devemos colocar um required nos campos de registro)
-
-          se o cadastro
-          for bem sucedido retorna o seguinte objeto {
-              createdAt: "2022-05-18T15:14:58.258Z"
-              email: "Aluno@gmail223.com.br"
-              id: "af31602f-7b5a-4ed9-a028-778fae4d1ed0"
-              name: "Aluno Kenzie"
-              password: "$2a$08$XBrQonU3fmp7zCkMBVwhFu04s26RFDCBkbBjJ16HnCGTlRrNqWYkK"
-              updatedAt: "2022-05-18T15:14:58.258Z"
-          } */
+        
+         
     }
 
     /* logando */
@@ -72,12 +53,154 @@ export class Api {
      }
     */
 
-    static async login(data) {
+    static async login(userInfos) {
         const token = await fetch(
                 "https://api-kenzie-food.herokuapp.com/auth/login", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(userInfos),
+                })
+            .then((res) => res.json())
+            .then((res) => res)
+            .catch((error) => error);
+
+        Api.token = token
+
+        return token;
+    }
+
+
+    /* Requisições do endpoint Cart */
+
+    /*   Adicionando ao carrinho  */
+
+
+    /* Para esse metodo é necessário passar o id do produto  da seguinte forma :
+    {
+        product_id: ""
+    } 
+    */
+
+    static async addCart(productId) {
+        const response = await fetch(
+                "https://api-kenzie-food.herokuapp.com/cart/add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${Api.token}`
+                    },
+                    body: JSON.stringify(productId),
+                })
+            .then((res) => res.json())
+            .then((res) => res)
+            .catch((error) => error);
+        return response;
+    }
+
+
+    /* Pegando itens do carrinho */
+    static async cartGet() {
+        const response = await fetch(
+                `https://api-kenzie-food.herokuapp.com/cart/`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${Api.token}`
+                    }
+                })
+            .then((res) => res.json())
+            .then((res) => res)
+            .catch((error) => error);
+
+
+        return response;
+    }
+
+    /*  Apagando itens do carrinho */
+
+    static async deletCartItem(idItem) {
+        const response = await fetch(
+                `https://api-kenzie-food.herokuapp.com/cart/remove/${idItem}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${Api.token}`
+                    },
+                })
+            .then((res) => res.json())
+            .then((res) => res)
+            .catch((error) => error);
+
+        return response;
+    }
+
+    /*  criando produtos
+    para criar um produto você precisa das informações da seguinte forma:
+
+        {
+       
+            nome: "Doce de creme de leite ",
+            preco: 4.50,
+            categoria: "Doce",
+            imagem: "https://kenzie-academy-brasil.gitlab.io/fullstack/frontend/modulo2/sprint4/img/capstone-images/mousse.png",
+            descricao: "Um delicioso doce de morango com creme de leite ",
+    
+        }
+ */
+
+
+    static async createProduct(product) {
+        const response = await fetch(
+                "https://api-kenzie-food.herokuapp.com/my/products", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${Api.token}`
+                    },
+                    body: JSON.stringify(product),
+                })
+            .then((res) => res.json())
+            .then((res) => res)
+            .catch((error) => error);
+        return response;
+    }
+
+    /*  pegando os itens criados pelo user  */
+
+    static async getPrivate() {
+        const response = await fetch(
+                "https://api-kenzie-food.herokuapp.com/my/products", {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${Api.token}`
+                    }
+                })
+            .then((res) => res.json())
+            .then((res) => res)
+            .catch((error) => error);
+        return response;
+    }
+
+    /*   editando um produto
+
+      para editar um produto voce não precisa passar todos os parametros, mas os parametros que dá ora mudar são  {
+          nome: "Nome do produto ",
+          descricao: "Um delicioso doce de morango  ",
+          categoria: "Frutas",
+          preco: 133,
+          imagem: "https://kenzie-academy-brasil.gitlab.io/fullstack/frontend/modulo2/sprint4/img/capstone-images/mousse.png"
+      } 
+      e do seu id */
+
+    static async editProduct(data, idProduct) {
+        const response = await fetch(
+                `https://api-kenzie-food.herokuapp.com/my/products/${idProduct}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${Api.token}`
                     },
                     body: JSON.stringify(data),
                 })
@@ -85,11 +208,23 @@ export class Api {
             .then((res) => res)
             .catch((error) => error);
 
-        Api.token = token
-      
-        return token;
+        return response;
     }
 
+    static async deletProduct(idProduct) {
+        const response = await fetch(
+                `https://api-kenzie-food.herokuapp.com/my/products/${idProduct}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${Api.token}`
+                    },
+                })
+            .then((res) => res.json())
+            .then((res) => res)
+            .catch((error) => error);
 
-    
+        return response;
+    }
+
 }
