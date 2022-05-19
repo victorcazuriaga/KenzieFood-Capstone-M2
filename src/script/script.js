@@ -37,6 +37,7 @@ Template.createProductList(productsArr);
 
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
 
+
 const btnShowCartMobile = document.getElementById('btn-show-cart');
 const btnCloseCartMobile = document.getElementById('btn-close-cart');
 
