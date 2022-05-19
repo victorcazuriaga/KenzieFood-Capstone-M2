@@ -8,6 +8,8 @@ export class Template {
   static prodctsDisplay = document.getElementById('products-display');
   static productDashBoardDisplay=document.getElementsByClassName('product-container')[0];
 
+  static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
+
   static async createProductList(productsArr) {
     Template.prodctsDisplay.innerHTML = '';
 
@@ -245,53 +247,50 @@ export class Template {
       });
     });
   }
-   static templateDashboard(productsArr){
-     Template.productDashBoardDisplay.innerHTML = ''
-     for(let i = 0; i< productsArr.length; i++){
-       //-------------criando as tags----------------------
-          const divContainer = document.createElement('div')
-          const divTitle = document.createElement('div')
-          const imgProduct = document.createElement('img')
-          const productTitle = document.createElement('p')
-          const divCategory = document.createElement('div')
-          const productCategory=document.createElement('span')
-          const productDescription=document.createElement('p')
-          const productActions=document.createElement('div')
-          const faPen=document.createElement('i')
-          const faTrash=document.createElement('i')
-           
-           //-------------atribuindo classes----------------------
+  static templateDashboard(productsArr) {
+    Template.productDashBoardDisplay.innerHTML = '';
+    for (let i = 0; i < productsArr.length; i++) {
+      //-------------criando as tags----------------------
+      const divContainer = document.createElement('div');
+      const divTitle = document.createElement('div');
+      const imgProduct = document.createElement('img');
+      const productTitle = document.createElement('p');
+      const divCategory = document.createElement('div');
+      const productCategory = document.createElement('span');
+      const productDescription = document.createElement('p');
+      const productActions = document.createElement('div');
+      const faPen = document.createElement('i');
+      const faTrash = document.createElement('i');
 
-           divContainer.className='container'
-           divTitle.className='title-img'
-           imgProduct.className='img'
-           productTitle.className='product-title'
-           divCategory.className='product-category'
-           productCategory.className='category'
-           productDescription.className='product-description'
-           productActions.className='product-actions'
-           faPen.className='fa-solid fa-pen'
-           faTrash.className='fa-solid fa-trash'
+      //-------------atribuindo classes----------------------
 
-          //-------------atribuindo valores----------------------
-            imgProduct.src=productsArr[i].imagem
-            productTitle.innerText=productsArr[i].nome
-            productCategory.innerText=productsArr[i].categoria
-            productDescription.innerText=productsArr[i].descricao
-          //-------------append variaveis----------------------
-            Template.productDashBoardDisplay.appendChild(divContainer)
-            divContainer.appendChild(divTitle)
-            divTitle.appendChild(imgProduct)
-            divTitle.appendChild(productTitle)
-            divContainer.appendChild(divCategory)
-            divCategory.appendChild(productCategory)
-            divContainer.appendChild(productDescription)
-            divContainer.appendChild(productActions)
-            productActions.appendChild(faPen)
-            productActions.appendChild(faTrash)
-          
-            
-      }
-   } 
+      divContainer.className = 'container';
+      divTitle.className = 'title-img';
+      imgProduct.className = 'img';
+      productTitle.className = 'product-title';
+      divCategory.className = 'product-category';
+      productCategory.className = 'category';
+      productDescription.className = 'product-description';
+      productActions.className = 'product-actions';
+      faPen.className = 'fa-solid fa-pen';
+      faTrash.className = 'fa-solid fa-trash';
+
+      //-------------atribuindo valores----------------------
+      imgProduct.src = productsArr[i].imagem;
+      productTitle.innerText = productsArr[i].nome;
+      productCategory.innerText = productsArr[i].categoria;
+      productDescription.innerText = productsArr[i].descricao;
+      //-------------append variaveis----------------------
+      Template.productDashBoardDisplay.appendChild(divContainer);
+      divContainer.appendChild(divTitle);
+      divTitle.appendChild(imgProduct);
+      divTitle.appendChild(productTitle);
+      divContainer.appendChild(divCategory);
+      divCategory.appendChild(productCategory);
+      divContainer.appendChild(productDescription);
+      divContainer.appendChild(productActions);
+      productActions.appendChild(faPen);
+      productActions.appendChild(faTrash);
+    }
   }
-    
+}
