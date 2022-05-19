@@ -5,38 +5,26 @@ import {Storage} from '../modules/localStorage.js';
 import {Utility} from '../modules/utility.js';
 import {productsApi} from '../modules/getProductsAPI.js';
 
+const productsArr = await Api.getPublicProducts();
+Template.createProductList(productsArr);
+
 const token = sessionStorage.getItem('token');
 
 const btnLogin = document.querySelector('.menu-login');
 const containerBtnProfile = document.querySelector('.btn-profile-container');
 
-//Verificacao login
 if (token) {
   // acessar API
   btnLogin.classList.add('display-none');
   containerBtnProfile.classList.remove('display-none');
+  productsApi.getCartItens();
 } else {
-  // acessar itens LocalStorage
+  // Acessar itens LocalStorage
   btnLogin.classList.remove('display-none');
   containerBtnProfile.classList.add('display-none');
+  Storage.getLocalStorage();
+  Storage.localStorageRender();
 }
-
-Storage.getLocalStorage();
-Storage.localStorageRender();
-//Const
-//
-// if(token){
-//  vai ter que mudar o botao de login => logout <---
-//  data do carrinho API
-//  redenrizar o carrinho pela localstorage --------------------------
-//  logado => addtocart manda pra API -------------------------------
-//  logado => deleteFromCart remove da API ---------------------------
-//} else {
-//  //redenrizar o carrinho pela localstorage
-// }
-
-const productsArr = await Api.getPublicProducts();
-Template.createProductList(productsArr);
 
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
 
@@ -83,14 +71,13 @@ categoryButtons.forEach(btn => {
 
 //-------------------------------- Profile Hover
 
-const btnProfile = document.querySelector('.btn-profile-container');
 const divLinks = document.querySelector('.div-links');
 
-btnProfile.addEventListener('mouseover', () => {
+containerBtnProfile.addEventListener('mouseover', () => {
   divLinks.classList.remove('display-none');
 });
 
-btnProfile.addEventListener('mouseleave', () => {
+containerBtnProfile.addEventListener('mouseleave', () => {
   divLinks.classList.add('display-none');
 });
 
@@ -138,87 +125,73 @@ btnRedicionaLogin.addEventListener('click', event => {
   registerForm.classList.add('display-none');
 });
 
-
 //---------- Filtro pela barra de pesquisa--------------------------------
 const searchBar = document.getElementsByClassName('input-search')[0];
-let arrProducts = []
-searchBar.addEventListener('keyup',(e)=>{
- 
-    const searchString = e.target.value.toLowerCase()
-    const filteredProducts = productsArr.filter((products)=>{
-        return (
-            products.nome.toLowerCase().includes(searchString) ||
-            products.categoria.toLowerCase().includes(searchString)
-        )
-    })
-    Filter.showFiltered(filteredProducts)
+let arrProducts = [];
+searchBar.addEventListener('keyup', e => {
+  const searchString = e.target.value.toLowerCase();
+  const filteredProducts = productsArr.filter(products => {
+    return (
+      products.nome.toLowerCase().includes(searchString) ||
+      products.categoria.toLowerCase().includes(searchString)
+    );
+  });
+  Filter.showFiltered(filteredProducts);
 });
 
-
 //---------- cadastrando usuario--------------------------------
-const inputsForm=document.getElementsByClassName('form-input')
-const formRegister=document.getElementById('form-register')
+const inputsForm = document.getElementsByClassName('form-input');
+const formRegister = document.getElementById('form-register');
 
-formRegister.addEventListener('submit', async (event) => {
-  event.preventDefault()
-    const newUser= {
-              name: inputsForm[2].value,
-              email: inputsForm[3].value,
-              password: inputsForm[4].value
+formRegister.addEventListener('submit', async event => {
+  event.preventDefault();
+  const newUser = {
+    name: inputsForm[2].value,
+    email: inputsForm[3].value,
+    password: inputsForm[4].value,
+  };
+
+  const response = await Api.registerUser(newUser);
+  console.log(response);
+  if (response !== 'User Already Exists!') {
+    alert('Cadastro realizado com sucesso!');
+  } else if (response === 'User Already Exists!') {
+    alert('Este email já foi cadastrado, tente outro!');
   }
-
-  const response = await Api.registerUser(newUser)
-  console.log(response)
-   if (response !== 'User Already Exists!') {
-      alert('Cadastro realizado com sucesso!')
-      
-  } else if (response === 'User Already Exists!' ) {
-      alert('Este email já foi cadastrado, tente outro!')
-  }  
-
-})
+});
 
 //---------- Login usuario--------------------------------
-const formLogin=document.getElementById('form-login')
+const formLogin = document.getElementById('form-login');
 
- formLogin.addEventListener('submit', async (event) => {
-  event.preventDefault()
+formLogin.addEventListener('submit', async event => {
+  event.preventDefault();
 
+  const userInfos = {
+    email: inputsForm[0].value,
+    password: inputsForm[1].value,
+  };
 
-  const userInfos={
-        email: inputsForm[0].value,
-        password: inputsForm[1].value
-  }
+  const userToken = await Api.login(userInfos);
+  console.log(userToken);
 
-  const userToken= await Api.login(userInfos)
-  console.log(userToken)
-  
-  console.log(Api.token)
-  
-  
+  console.log(Api.token);
+
   if (userToken.error === `Email: ${inputsForm[0].value} does not exists`) {
-    alert('O email informado não existe')
-    
-    
+    alert('O email informado não existe');
   } else if (userToken.error === 'password invalid') {
-    alert('Senha invalida')
-  } 
-  else{
-    
-    sessionStorage.setItem('token', Api.token)
-    console.log(Api.token)
-     location.reload()
-  } 
-}) 
+    alert('Senha invalida');
+  } else {
+    sessionStorage.setItem('token', Api.token);
+    console.log(Api.token);
+    location.reload();
+  }
+});
 
 //---------- Logout usuario--------------------------------
 
-const logoutBnt=document.getElementById('logout')
-console.log(logoutBnt)
+const logoutBnt = document.getElementById('logout');
 
-logoutBnt.addEventListener('click',  () => {
- 
- sessionStorage.clear()
- location.reload()
-
-})
+logoutBnt.addEventListener('click', () => {
+  sessionStorage.clear();
+  location.reload();
+});
