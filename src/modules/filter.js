@@ -22,4 +22,15 @@ export class Filter {
     });
     return filterdedData;
   }
+
+  static showFiltered(arrProducts) {
+    const htmlString = arrProducts
+      .map(arrProducts => {
+        return `${arrProducts.nome}
+        ${arrProducts.categoria}
+        ${arrProducts.imagem}`;
+      })
+      .join('');
+    Template.createProductList(arrProducts);
+  }
 }

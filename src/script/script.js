@@ -2,9 +2,28 @@ import {Filter} from '../modules/filter.js';
 import {Api} from '../modules/Api.js';
 import {Template} from '../modules/Template.js';
 import {Storage} from '../modules/localStorage.js';
+import {Utility} from '../modules/utility.js';
+import {productsApi} from '../modules/getProductsAPI.js';
+
+const token = sessionStorage.getItem('token');
+
+const btnLogin = document.querySelector('.menu-login');
+const containerBtnProfile = document.querySelector('.btn-profile-container');
+
+//Verificacao login
+if (token) {
+  // acessar API
+  btnLogin.classList.add('display-none');
+  containerBtnProfile.classList.remove('display-none');
+} else {
+  // acessar itens LocalStorage
+  btnLogin.classList.remove('display-none');
+  containerBtnProfile.classList.add('display-none');
+}
 
 Storage.getLocalStorage();
 Storage.localStorageRender();
+
 //Const
 //
 // if(token){
@@ -63,6 +82,68 @@ categoryButtons.forEach(btn => {
   });
 });
 
-//------------------button Add To Cart -------------------------
+//-------------------------------- Profile Hover
 
-//-----------------------teste-------------------------
+const btnProfile = document.querySelector('.btn-profile-container');
+const divLinks = document.querySelector('.div-links');
+
+btnProfile.addEventListener('mouseover', () => {
+  divLinks.classList.remove('display-none');
+});
+
+btnProfile.addEventListener('mouseleave', () => {
+  divLinks.classList.add('display-none');
+});
+
+//---------------------------------- button login/ form popuplogin
+
+const loginBtn = document.getElementById('menu-mobile');
+const loginPopup = document.getElementById('popup-login');
+const closeLoginBtn = document.getElementById('close-login');
+const btnRedirecionaCadastro = document.getElementById('redirecionar-cadastro');
+
+//------------------------------- button formcadastro
+const registerForm = document.getElementById('popup-register');
+const btnCloseRegister = document.getElementById('close-register');
+const btnRedicionaLogin = document.getElementById('redirecionar-login');
+
+loginBtn.addEventListener('click', () => {
+  loginPopup.classList.remove('display-none');
+  mainTag.classList.add('mobile');
+  shoppingCart.classList.add('display-none');
+});
+
+closeLoginBtn.addEventListener('click', () => {
+  loginPopup.classList.add('display-none');
+  mainTag.classList.remove('mobile');
+  shoppingCart.classList.remove('display-none');
+});
+
+btnCloseRegister.addEventListener('click', () => {
+  registerForm.classList.add('display-none');
+  mainTag.classList.remove('mobile');
+  shoppingCart.classList.remove('display-none');
+});
+
+btnRedirecionaCadastro.addEventListener('click', event => {
+  event.preventDefault();
+
+  loginPopup.classList.add('display-none');
+  registerForm.classList.remove('display-none');
+});
+
+btnRedicionaLogin.addEventListener('click', event => {
+  event.preventDefault();
+
+  loginPopup.classList.remove('display-none');
+  registerForm.classList.add('display-none');
+});
+
+//----------------------------DELETAR TESTE
+let userinformacao = {
+  email: 'time6@gmail.com.br',
+  password: '123',
+};
+Api.login(userinformacao);
+
+productsApi.getCartItens();
