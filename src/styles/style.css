@@ -308,7 +308,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 50px;
+  gap: 18px;
 }
 
 .shopping-div-img {
@@ -346,12 +346,12 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
 }
 
 .remove-from-cart {
-  padding: 8px 4px;
+  padding: 3px 1px;
   font-size: 18px;
   background-color: #fff;
   color: #868e96;
@@ -369,6 +369,16 @@ input[type='number']::-webkit-outer-spin-button {
   opacity: 1;
 }
 
+.pQuantidade {
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  color: #fc0c40;
+}
+.pQuantidade small {
+  font-size: 14px;
+  font-weight: 600;
+}
 /* Shopping value / amount */
 
 .shopping-amount,
@@ -386,6 +396,16 @@ input[type='number']::-webkit-outer-spin-button {
 
 .shopping-amount {
   background-color: #f8f9fa;
+}
+.shopping-value {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.shopping-value p {
+  font-size: 16px;
+}
+.shopping-value small {
+  font-size: 16px;
 }
 
 /* --------- Menu setting for mobile acionando toggle -----------*/
@@ -488,7 +508,7 @@ footer {
   .products-display {
     flex-wrap: wrap;
     gap: 26px;
-    width: 66%;
+    width: 100%;
     margin-left: 26px;
   }
 
@@ -498,10 +518,17 @@ footer {
     transition: all 0.4s;
   }
 
-  .shopping-cart {
-    margin-top: 18px;
+  .shopping-cart-container {
     position: sticky;
-    display: inline-block;
+    top: 60px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+
+  .shopping-cart {
+    position: relative;
+    margin-right: 90px;
+    display: block;
   }
 
   .shopping-cart-title {
@@ -675,7 +702,47 @@ footer {
   color: #ff2253;
 }
 
+/* Alert Popup */
+.alert-popup {
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: #ccc;
+  height: 250px;
+  width: 400px;
+  border-radius: 12px;
+  border: 1.5px solid #000;
+}
+
+.nav-alert {
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #e9ecef;
+  border-bottom: 1.5px solid #000;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.close-alert {
+  cursor: pointer;
+  font-size: 26px;
+}
+.close-alert i {
+  color: #ff2253;
+}
+.content-alert {
+  height: 65%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 4px 10px;
+  justify-content: center;
+}
+
 /* display-none sempre por ultimo plz */
 .display-none {
-  display: none;
+  display: none !important;
 }

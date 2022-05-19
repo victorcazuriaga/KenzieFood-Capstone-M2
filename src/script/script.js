@@ -2,18 +2,21 @@ import {Filter} from '../modules/filter.js';
 import {Api} from '../modules/Api.js';
 import {Template} from '../modules/Template.js';
 import {Storage} from '../modules/localStorage.js';
+import {Utility} from '../modules/utility.js';
+import {productsApi} from '../modules/getProductsAPI.js';
 
-//sessionStorage.setItem('token', '123'); ----> apenas para teste
 const token = sessionStorage.getItem('token');
 
 const btnLogin = document.querySelector('.menu-login');
 const containerBtnProfile = document.querySelector('.btn-profile-container');
 
-// Verificacao se esta logado ou para o alternar entre botao login/user (FUNCIONA!! =)
+//Verificacao login
 if (token) {
+  // acessar API
   btnLogin.classList.add('display-none');
   containerBtnProfile.classList.remove('display-none');
 } else {
+  // acessar itens LocalStorage
   btnLogin.classList.remove('display-none');
   containerBtnProfile.classList.add('display-none');
 }
@@ -36,7 +39,6 @@ const productsArr = await Api.getPublicProducts();
 Template.createProductList(productsArr);
 
 //------------------ Funcionalidade para mostrar/fechar o carrinho Mobile
-
 
 const btnShowCartMobile = document.getElementById('btn-show-cart');
 const btnCloseCartMobile = document.getElementById('btn-close-cart');
@@ -141,6 +143,7 @@ btnRedicionaLogin.addEventListener('click', event => {
 const searchBar = document.getElementsByClassName('input-search')[0];
 let arrProducts = []
 searchBar.addEventListener('keyup',(e)=>{
+ 
     const searchString = e.target.value.toLowerCase()
     const filteredProducts = productsArr.filter((products)=>{
         return (
