@@ -85,6 +85,20 @@
           <button type="submit" class="form-submit-btn">Cadastrar Produto</button>
         </form>
       </aside>
+
+      <aside class="delete-popup display-none" id="delete-popup">
+        <div class="nav-delete">
+          <h5>Exclusão do produto!</h5>
+          <button class="close-delete" id="close-delete">
+            <i class="fa fa-window-close" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="content-delete">
+          <p id="text-delete">Tem certeza que deseja excluir este produto?</p>
+        </div>
+        <button class="btn-delete delete-sim">Sim</button>
+        <button class="btn-delete delete-nao">Não</button>
+      </aside>
     </main>
 
     <script type="module" src="../script/dashboard.js"></script>

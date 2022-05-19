@@ -48,3 +48,16 @@ btnAddProduct.addEventListener('click', () => {
 closeAddProduct.addEventListener('click', () => {
   addProduct.classList.add('display-none');
 });
+
+//------------------------- Excluir produto => dentro de uma funcao e dps direto na renderizacao
+//------------------------- Editar produto => dentro de uma funcao e dps direto na renderizacao
+
+const deletePopup = document.getElementById('delete-popup');
+const closeDelete = document.getElementById('close-delete');
+
+const btnDeleteSim = document.querySelector('.delete-sim');
+const btnDeleteNao = document.querySelector('.delete-nao');
+
+closeDelete.addEventListener('click', () => {
+  deletePopup.classList.add('display-none');
+});
