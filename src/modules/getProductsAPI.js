@@ -13,20 +13,16 @@ export class productsApi {
       const item = product.products;
       const {nome, preco, categoria, imagem, id} = item;
 
-      //Verificacao do produto
+      //Verificacao do produto--------------------------
       const verificacao = document.getElementById(`qnt${id}`);
       if (verificacao) {
         let qntAtual = +verificacao.innerText;
         qntAtual++;
         verificacao.innerText = qntAtual;
-
-        // verificacao da quantidade certo PEGA A QUANTIDADE TOTAL
         let quantidade = Template.getQuantity();
-        // PASSA A QUANTIDADE TOTAL PARA O HTML
+
         Template.setQuantity(quantidade);
-        // VERIFICAR PRECO
         Template.setValue();
-        //incrementar qnt no API
         return;
       }
 
@@ -82,12 +78,12 @@ export class productsApi {
         Template.removeFromCart(button);
       });
 
-      //append
+      //Append
       shoppingDivImg.append(img);
       shoppingDivDetails.append(h4, p, small);
       shoppingDivDelete.append(button, pQnt);
 
-      //verifica qunatidade de produtos
+      //verifica qnt de produtos
       if (product.quantity) {
         smallQnt.innerText = product.quantity;
       }
