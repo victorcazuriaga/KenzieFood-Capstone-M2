@@ -20,7 +20,7 @@
         <div class="logo-container">
           <h3 class="logo">Kenzie <span class="span-logo">Food</span></h3>
           <button class="menu menu-login" id="menu-mobile">Login</button>
-          <div class="btn-profile-container">
+          <div class="btn-profile-container display-none">
             <button class="profile" id="profile"><i class="fas fa-user"></i></button>
             <div class="div-links display-none">
               <a href="./src/pages/dashboard.html" class="link">Area Usuario</a>
@@ -77,6 +77,7 @@
               <div class="shopping-div-delete">
                 <button class="remove-from-cart">
                   <i class="fa fa-trash"></i>
+                  <p>Qnt:<span >0</span></p>
                 </button>
               </div>
             </div> -->
@@ -133,6 +134,18 @@
       </form>
 
       <a href="" class="link-redirecionamento" id="redirecionar-login">Já sou cadastrado!</a>
+    </aside>
+
+    <aside class="alert-popup display-none" id="alert">
+      <div class="nav-alert">
+        <h5>Error!</h5>
+        <button class="close-alert" id="close-alert">
+          <i class="fa fa-window-close" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="content-alert">
+        <p id="text-alert">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, omnis.</p>
+      </div>
     </aside>
   </main>
 
