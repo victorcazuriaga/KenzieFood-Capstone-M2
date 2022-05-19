@@ -204,3 +204,51 @@ body {
   color: #555;
   transition: all 0.3s;
 }
+
+/* Referente a utilizacao da Api */
+
+.btn-profile-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+
+.profile {
+  padding: 14px 20px;
+  border-radius: 50%;
+
+  cursor: pointer;
+  font-size: 24px;
+  transition: all 0.3s;
+}
+
+.div-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9ecef;
+  margin-top: 55px;
+  padding: 15px;
+  position: fixed;
+}
+
+.link {
+  font-size: 20px;
+  width: 100%;
+  padding: 10px;
+  background: none;
+  transition: all 0.4s;
+}
+
+.link:hover {
+  background: #777;
+  color: #fff;
+}
+
+/* display-none sempre por ultimo plz */
+.display-none {
+  display: none !important;
+}
