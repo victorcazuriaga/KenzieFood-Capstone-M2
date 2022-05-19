@@ -13,7 +13,6 @@ export class Filter {
     });
     return filterdedData;
   }
-
   static filterById(idProduto, data) {
     const filterdedData = data.filter(product => {
       if (product.id.includes(idProduto)) {
