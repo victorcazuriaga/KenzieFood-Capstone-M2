@@ -31,5 +31,14 @@ export class Filter {
     .join('');
     Template.createProductList(arrProducts)
     }
+    static showFilteredDashboard (arrProducts){
+      const htmlString = arrProducts.map((arrProducts)=>{
+          return `${arrProducts.nome}
+          ${arrProducts.categoria}
+          ${arrProducts.imagem}`
+          })
+      .join('');
+      Template.templateDashboard(arrProducts)
+      }
 }
 
