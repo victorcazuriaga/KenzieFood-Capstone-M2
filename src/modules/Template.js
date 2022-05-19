@@ -3,6 +3,7 @@ import {Api} from './Api.js';
 import {Filter} from './filter.js';
 import {Storage} from './localStorage.js';
 
+
 export class Template {
   static prodctsDisplay = document.getElementById('products-display');
   static cartItemList = [];
@@ -229,9 +230,9 @@ export class Template {
             divContainer.appendChild(productActions)
             productActions.appendChild(faPen)
             productActions.appendChild(faTrash)
-
-
           
+            
       }
    } 
-}
+  }
+    

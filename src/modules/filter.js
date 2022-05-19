@@ -13,7 +13,6 @@ export class Filter {
     });
     return filterdedData;
   }
-
   static filterById(idProduto, data) {
     const filterdedData = data.filter(product => {
       if (product.id.includes(idProduto)) {
@@ -31,5 +30,14 @@ export class Filter {
     .join('');
     Template.createProductList(arrProducts)
     }
+    static showFilteredDashboard (arrProducts){
+      const htmlString = arrProducts.map((arrProducts)=>{
+          return `${arrProducts.nome}
+          ${arrProducts.categoria}
+          ${arrProducts.imagem}`
+          })
+      .join('');
+      Template.templateDashboard(arrProducts)
+      }
 }
 
