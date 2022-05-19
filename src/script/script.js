@@ -151,14 +151,17 @@ formRegister.addEventListener('submit', async event => {
     password: inputsForm[4].value,
   };
 
-  const response = await Api.registerUser(newUser);
-  console.log(response);
-  if (response !== 'User Already Exists!') {
-    alert('Cadastro realizado com sucesso!');
-  } else if (response === 'User Already Exists!') {
-    alert('Este email já foi cadastrado, tente outro!');
-  }
-});
+  const response = await Api.registerUser(newUser)
+  console.log(response)
+   if (response !== 'User Already Exists!') {
+      alert('Cadastro realizado com sucesso!')
+      registerForm.classList.add('display-none')
+      loginPopup.classList.remove('display-none')
+  } else if (response === 'User Already Exists!' ) {
+      alert('Este email já foi cadastrado, tente outro!')
+  }  
+
+})
 
 //---------- Login usuario--------------------------------
 const formLogin = document.getElementById('form-login');
