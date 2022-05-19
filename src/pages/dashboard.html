@@ -30,7 +30,7 @@
           <div class="btn-profile-container">
             <button class="profile" id="profile"><i class="fas fa-user"></i></button>
             <div class="div-links display-none">
-              <button class="link" id="logout-dasboard">Logout</button>
+              <a class="link" href="../../index.html" id="pagina-inicial">Pagina Inicial</a>
             </div>
           </div>
         </div>
@@ -63,6 +63,29 @@
 
         </div>
       </section>
+
+      <aside class="container-popup display-none" id="popup-novoProduto">
+        <div class="title-popup">
+          <h4 class="h4-popup">Cadastrar novo produto</h4>
+          <button class="btn-popup" id="close-novoProduto">
+            <i class="fa fa-window-close" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <form action="" class="form" id="form-">
+          <input class="form-input" type="text" placeholder="Nome do produto" required />
+          <input class="form-input" type="text" placeholder="Descricao" required />
+          <label for="Categoria">Selecione a Categoria:</label>
+          <select name="" id="select-form-novoProduto">
+            <option value="Panificadora">Panificadora</option>
+            <option value="Frutas">Frutas</option>
+            <option value="Bebidas">Bebidas</option>
+          </select>
+          <input class="form-input" type="number" placeholder="Valor do Produto" required />
+          <input class="form-input" type="text" placeholder="Link da imagem" required />
+          <button type="submit" class="form-submit-btn">Cadastrar Produto</button>
+        </form>
+      </aside>
     </main>
 
     <script type="module" src="../script/dashboard.js"></script>
