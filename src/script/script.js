@@ -171,7 +171,8 @@ formRegister.addEventListener('submit', async (event) => {
   console.log(response)
    if (response !== 'User Already Exists!') {
       alert('Cadastro realizado com sucesso!')
-      
+      registerForm.classList.add('display-none')
+      loginPopup.classList.remove('display-none')
   } else if (response === 'User Already Exists!' ) {
       alert('Este email já foi cadastrado, tente outro!')
   }  
