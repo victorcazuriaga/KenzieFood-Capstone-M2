@@ -61,7 +61,7 @@ const btnDeleteNao = document.querySelector('.delete-nao');
 
 closeDelete.addEventListener('click', () => {
   deletePopup.classList.add('display-none');
-}
+});
 
 //---------- filtro por categoria --------------------------------
 
@@ -76,7 +76,7 @@ function filterByCategory(targetId) {
     Template.templateDashboard(itensUser);
   } else {
     const filteredArr = Filter.filterByInput(targetId, itensUser);
-    Template. templateDashboard(filteredArr);
+    Template.templateDashboard(filteredArr);
   }
 }
 
@@ -87,7 +87,6 @@ categoryButtons.forEach(btn => {
     const filter = event.currentTarget.id;
     filterByCategory(filter);
   });
-
 });
 
 //------------------------- Editar produto => dentro de uma funcao e dps direto na renderizacao
@@ -98,3 +97,25 @@ const closeEditar = document.getElementById('close-editar');
 closeEditar.addEventListener('click', () => {
   editarPopup.classList.add('display-none');
 });
+
+//--------------------------------- Register Product
+class RegisterProduct {
+  static registerProduct() {
+    const submit = document.querySelector('.form');
+    console.log(submit);
+    submit.addEventListener('submit', event => {
+      event.preventDefault();
+      let formRegister = [...document.querySelectorAll('.form-input')].reduce(
+        (acc, cur) => ({...acc, [cur.name]: cur.value}),
+        {}
+      );
+      Api.createProduct(formRegister);
+
+      const popEditar = document.getElementById('popup-novoProduto');
+      popEditar.classList.add('display-none');
+      const main = document.getElementById('main');
+      main.classList.remove('bg-dark');
+    });
+  }
+}
+RegisterProduct.registerProduct();

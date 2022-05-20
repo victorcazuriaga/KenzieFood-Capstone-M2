@@ -60,7 +60,6 @@
 
         <div class="product-container">
           <!-- Produtos vao aqui dentro-->
-
         </div>
       </section>
 
@@ -73,16 +72,34 @@
         </div>
 
         <form action="" class="form" id="form-editar">
-          <input class="form-input" type="text" placeholder="Nome do produto" required />
-          <input class="form-input" type="text" placeholder="Descrição" required />
+          <input
+            class="form-input"
+            name="nome"
+            type="text"
+            placeholder="Nome do produto"
+            required
+          />
+          <input class="form-input" name="descricao" type="text" placeholder="Descricao" required />
           <label for="Categoria">Selecione a Categoria:</label>
-          <select name="" id="select-form-novoProduto">
+          <select name="categoria" class="form-input" id="select-form-novoProduto">
             <option value="Panificadora">Panificadora</option>
             <option value="Frutas">Frutas</option>
             <option value="Bebidas">Bebidas</option>
           </select>
-          <input class="form-input" type="number" placeholder="Valor do Produto" required />
-          <input class="form-input" type="text" placeholder="Link da imagem" required />
+          <input
+            class="form-input"
+            name="preco"
+            type="number"
+            placeholder="Valor do Produto"
+            required
+          />
+          <input
+            class="form-input"
+            name="imagem"
+            type="text"
+            placeholder="Link da imagem"
+            required
+          />
           <button type="submit" class="form-submit-btn">Cadastrar Produto</button>
         </form>
       </aside>
