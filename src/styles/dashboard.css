@@ -405,6 +405,25 @@ body {
   color: #fc0c40;
 }
 
+/*-------------------------Editar container */
+
+#excluir {
+  background-color: #f8f9fa;
+  color: #868e96;
+}
+
+/* BG DARK */
+main.bg-dark::before {
+  content: '';
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.8;
+}
+
 /* display-none sempre por ultimo plz */
 .display-none {
   display: none !important;

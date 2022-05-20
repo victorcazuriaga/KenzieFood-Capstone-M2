@@ -23,7 +23,7 @@ searchBar.addEventListener('keyup', e => {
 });
 
 //-------------------------------- Profile Hover
-
+const main = document.getElementById('main');
 const containerBtnProfile = document.querySelector('.btn-profile-container');
 
 const divLinks = document.querySelector('.div-links');
@@ -44,13 +44,14 @@ const closeAddProduct = document.getElementById('close-novoProduto');
 
 btnAddProduct.addEventListener('click', () => {
   addProduct.classList.remove('display-none');
+  main.classList.add('bg-dark');
 });
 closeAddProduct.addEventListener('click', () => {
   addProduct.classList.add('display-none');
+  main.classList.remove('bg-dark');
 });
 
 //------------------------- Excluir produto => dentro de uma funcao e dps direto na renderizacao
-//------------------------- Editar produto => dentro de uma funcao e dps direto na renderizacao
 
 const deletePopup = document.getElementById('delete-popup');
 const closeDelete = document.getElementById('close-delete');
@@ -87,4 +88,13 @@ categoryButtons.forEach(btn => {
     filterByCategory(filter);
   });
 
+});
+
+//------------------------- Editar produto => dentro de uma funcao e dps direto na renderizacao
+
+const editarPopup = document.getElementById('popup-editar');
+const closeEditar = document.getElementById('close-editar');
+
+closeEditar.addEventListener('click', () => {
+  editarPopup.classList.add('display-none');
 });
