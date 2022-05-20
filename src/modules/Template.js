@@ -355,8 +355,8 @@ export class Template {
           };
           const returnApi = await Api.editProduct(productNewInfos, itensUser[i].id);
           if (returnApi === 'Produto Atualizado') {
-            alert('Produto atualizado com sucesso');
             location.reload();
+            alert('Produto atualizado com sucesso');
           } else if (
             returnApi == 'Validation error: Campo nome deve ter entre 4 a 150 caracteres'
           ) {
