@@ -204,3 +204,145 @@ body {
   color: #555;
   transition: all 0.3s;
 }
+
+/* Referente a utilizacao da Api */
+
+.btn-profile-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+
+.profile {
+  padding: 14px 20px;
+  border-radius: 50%;
+
+  cursor: pointer;
+  font-size: 24px;
+  transition: all 0.3s;
+}
+
+.div-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e9ecef;
+  margin-top: 55px;
+  padding: 15px;
+  position: fixed;
+}
+
+.link {
+  font-size: 20px;
+  width: 100%;
+  padding: 10px;
+  background: none;
+  transition: all 0.4s;
+}
+
+.link:hover {
+  background: #777;
+  color: #fff;
+}
+
+/* -------------------- formularios */
+
+.container-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 600px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #fff;
+  z-index: 2;
+  border: 2px solid #000;
+  text-align: center;
+}
+
+.title-popup {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  width: 100%;
+  padding: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  background: #f8f9fa;
+}
+
+.title-popup .btn-popup {
+  font-size: 22px;
+  background: #f8f9fa;
+  cursor: pointer;
+}
+
+.form {
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form label {
+  font-size: 18px;
+}
+
+.form select {
+  outline: none;
+  border: 3px #ff2253 solid;
+  border-radius: 12px;
+}
+
+.form input {
+  padding: 12px 16px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1.5px solid #dee2e6;
+}
+
+.form .form-submit-btn {
+  padding: 15px 20px;
+  border-radius: 32px;
+  width: 75%;
+  background-color: #ff2253;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.form .form-submit-btn:hover {
+  color: #000;
+  background-color: #fc0c40;
+}
+
+.link-redirecionamento {
+  width: 100%;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  color: rgb(72, 72, 222);
+  padding: 20px;
+  margin-left: auto;
+  background: #f8f9fa;
+  font-size: 16px;
+}
+
+.link-redirecionamento:hover {
+  color: #ff2253;
+}
+/* display-none sempre por ultimo plz */
+.display-none {
+  display: none !important;
+}
