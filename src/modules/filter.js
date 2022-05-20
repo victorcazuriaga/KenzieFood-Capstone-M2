@@ -1,4 +1,6 @@
-import {Template} from './Template.js';
+import {
+  Template
+} from './Template.js';
 export class Filter {
   static filterByInput(input, data) {
     let inputText = input.toLowerCase();
@@ -21,23 +23,22 @@ export class Filter {
     });
     return filterdedData;
   }
-  static showFiltered (arrProducts){
-    const htmlString = arrProducts.map((arrProducts)=>{
+  static showFiltered(arrProducts) {
+    const htmlString = arrProducts.map((arrProducts) => {
         return `${arrProducts.nome}
         ${arrProducts.categoria}
         ${arrProducts.imagem}`
-        })
-    .join('');
+      })
+      .join('');
     Template.createProductList(arrProducts)
-    }
-    static showFilteredDashboard (arrProducts){
-      const htmlString = arrProducts.map((arrProducts)=>{
-          return `${arrProducts.nome}
+  }
+  static showFilteredDashboard(arrProducts) {
+    const htmlString = arrProducts.map((arrProducts) => {
+        return `${arrProducts.nome}
           ${arrProducts.categoria}
           ${arrProducts.imagem}`
-          })
+      })
       .join('');
-      Template.templateDashboard(arrProducts)
-      }
+    Template.templateDashboard(arrProducts)
+  }
 }
-

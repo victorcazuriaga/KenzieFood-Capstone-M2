@@ -109,20 +109,25 @@ body {
 .filters #panificadora {
   background-color: #fff7f4;
 }
+
 .filters #panificadora:hover {
   background-color: #ff2253;
   color: #fff;
 }
+
 .filters #frutas {
   background-color: #fff1f4;
 }
+
 .filters #frutas:hover {
   background-color: #ff2253;
   color: #fff;
 }
+
 .filters #bebidas {
   background-color: #f3eef5;
 }
+
 .filters #bebidas:hover {
   background-color: #ff2253;
   color: #fff;
@@ -372,6 +377,7 @@ body {
   cursor: pointer;
   font-size: 26px;
 }
+
 .close-delete i {
   color: #ff2253;
 }

@@ -7,8 +7,6 @@ export class Template {
   static prodctsDisplay = document.getElementById('products-display');
   static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
 
-  static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
-
   static async createProductList(productsArr) {
     Template.prodctsDisplay.innerHTML = '';
 
@@ -76,7 +74,13 @@ export class Template {
 
   static addToCart(product) {
     const item = product[0];
-    const {nome, preco, categoria, imagem, id} = item;
+    const {
+      nome,
+      preco,
+      categoria,
+      imagem,
+      id
+    } = item;
 
     //Verificacao do produto
     const verificacao = document.getElementById(`qnt${id}`);
@@ -246,7 +250,6 @@ export class Template {
       });
     });
   }
-
   static templateDashboard(productsArr) {
     Template.productDashBoardDisplay.innerHTML = '';
 
@@ -378,4 +381,5 @@ export class Template {
       });
     }
   }
+
 }

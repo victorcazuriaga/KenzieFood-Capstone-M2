@@ -1,71 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="./src/styles/style.css" />
-    <title>CAPSTONE_M2</title>
-  </head>
-  <body>
-    <header class="header">
-      <nav class="nav">
-        <div class="logo-container">
-          <h3 class="logo">Kenzie <span class="span-logo">Food</span></h3>
-          <button class="menu menu-login" id="menu-mobile">Login</button>
-          <div class="btn-profile-container display-none">
-            <button class="profile" id="profile"><i class="fas fa-user"></i></button>
-            <div class="div-links display-none">
-              <a href="./src/pages/dashboard.html" class="link">Area Usuario</a>
-              <button class="link" id="logout">Logout</button>
-            </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="./src/styles/style.css" />
+  <title>CAPSTONE_M2</title>
+</head>
+
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="logo-container">
+        <h3 class="logo">Kenzie <span class="span-logo">Food</span></h3>
+        <button class="menu menu-login" id="menu-mobile">Login</button>
+        <div class="btn-profile-container display-none">
+          <button class="profile" id="profile"><i class="fas fa-user"></i></button>
+          <div class="div-links display-none">
+            <a href="./src/pages/dashboard.html" class="link">Area Usuario</a>
+            <button class="link" id="logout">Logout</button>
           </div>
         </div>
-        <div class="search">
-          <div  class="form-search" id="form-search">
-            <input
-              type="text"
-              class="input-search"
-              placeholder="&#xF002; Pesquisar por Produto"
-              style="font-family: 'Poppins', FontAwesome"
-            />
-          </div>
+      </div>
+      <div class="search">
+        <div class="form-search" id="form-search">
+          <input type="text" class="input-search" placeholder="&#xF002; Pesquisar por Produto"
+            style="font-family: 'Poppins', FontAwesome" />
         </div>
-        <div class="filters">
-          <a class="filter selected" id="todos">Todos</a>
-          <a class="filter" id="panificadora"><span>&#127838;</span>Panificadora</a>
-          <a class="filter" id="frutas"><span>&#127821;</span>Frutas</a>
-          <a class="filter" id="bebidas"><span>&#x1F377;</span>Bebidas</a>
+      </div>
+      <div class="filters">
+        <a class="filter selected" id="todos">Todos</a>
+        <a class="filter" id="panificadora"><span>&#127838;</span>Panificadora</a>
+        <a class="filter" id="frutas"><span>&#127821;</span>Frutas</a>
+        <a class="filter" id="bebidas"><span>&#x1F377;</span>Bebidas</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main" id="main">
+    <section id="products-display" class="products-display">
+      <!-- Produtos serao criados dentro deste div pelo DOM  -->
+    </section>
+
+    <aside class="shopping-cart" id="shopping-cart">
+      <div class="shopping-cart-container">
+        <div class="shopping-cart-title">
+          <i class="fas fa-shopping-cart shopping-cart-icon"></i>
+          <small class="shopping-cart-small">Carrinho</small>
+          <button id="btn-close-cart">
+            <i class="fa-solid fa-xmark shopping-cart-close"></i>
+          </button>
         </div>
-      </nav>
-    </header>
 
-    <main class="main" id="main">
-      <section id="products-display" class="products-display">
-        <!-- Produtos serao criados dentro deste div pelo DOM  -->
-      </section>
-
-      <aside class="shopping-cart" id="shopping-cart">
-        <div class="shopping-cart-container">
-          <div class="shopping-cart-title">
-            <i class="fas fa-shopping-cart shopping-cart-icon"></i>
-            <small class="shopping-cart-small">Carrinho</small>
-            <button id="btn-close-cart">
-              <i class="fa-solid fa-xmark shopping-cart-close"></i>
-            </button>
-          </div>
-
-          <section class="shopping-cart-products">
-            <!-- Produtos serao criados dentro deste div pelo DOM  -->
-            <!-- EXEMPLO HTML  -->
-            <!-- <div class="shopping-cart-product">
+        <section class="shopping-cart-products">
+          <!-- Produtos serao criados dentro deste div pelo DOM  -->
+          <!-- EXEMPLO HTML  -->
+          <!-- <div class="shopping-cart-product">
               <div class="shopping-div-img">
                 <img src="./src/img/Frame 5.png" alt="" class="cart-product-img" />
               </div>
@@ -81,75 +75,76 @@
                 </button>
               </div>
             </div> -->
-          </section>
+        </section>
 
-          <div class="shopping-amount">
-            <small>Quantidade:</small>
-            <span id="span-amount">0</span>
-          </div>
-
-          <div class="shopping-value">
-            <small>Valor:</small>
-            <p>R$ <small id="span-value">0</small></p>
-          </div>
-        </div>
-      </aside>
-
-      <button class="btn-show-cart" id="btn-show-cart">
-        <i class="fas fa-shopping-cart btn-cart-icon"></i>
-        <small class="btn-cart-small">Carrinho</small>
-      </button>
-
-      <aside class="container-popup display-none" id="popup-login">
-        <div class="title-popup">
-          <h4 class="h4-popup">Login</h4>
-          <button class="btn-popup" id="close-login">
-            <i class="fa fa-window-close" aria-hidden="true"></i>
-          </button>
+        <div class="shopping-amount">
+          <small>Quantidade:</small>
+          <span id="span-amount">0</span>
         </div>
 
-        <form action="" class="form" id="form-login">
-          <input class="form-input" id="form-email-login" type="email" placeholder="email@kenzie.com" required />
-          <input class="form-input" id="form-password-login" type="password" placeholder="Senha" required />
-          <button type="submit" class="form-submit-btn">Login</button>
-        </form>
-
-        <a href="" class="link-redirecionamento" id="redirecionar-cadastro">Cadastre-se Aqui!</a>
-      </aside>
-    </main>
-
-    <aside class="container-popup display-none" id="popup-register">
-      <div class="title-popup">
-        <h4 class="h4-popup">Cadastrar-se</h4>
-        <button class="btn-popup" id="close-register">
-          <i class="fa fa-window-close" aria-hidden="true"></i>
-        </button>
+        <div class="shopping-value">
+          <small>Valor:</small>
+          <p>R$ <small id="span-value">0</small></p>
+        </div>
       </div>
-
-      <form action="" class="form" id="form-register">
-        <input class="form-input" id="form-name-register" type="text" placeholder="Nome" required />
-        <input class="form-input" id="form-email-register" type="email" placeholder="email@kenzie.com" required />
-        <input class="form-input" id="form-password-register" type="password" placeholder="Senha" required />
-        <button type="submit" class="form-submit-btn">Cadastrar</button>
-      </form>
-
-      <a href="" class="link-redirecionamento" id="redirecionar-login">Já sou cadastrado!</a>
     </aside>
 
-    <aside class="alert-popup display-none" id="alert">
-      <div class="nav-alert">
-        <h5>Error!</h5>
-        <button class="close-alert" id="close-alert">
+    <button class="btn-show-cart" id="btn-show-cart">
+      <i class="fas fa-shopping-cart btn-cart-icon"></i>
+      <small class="btn-cart-small">Carrinho</small>
+    </button>
+
+    <aside class="container-popup display-none" id="popup-login">
+      <div class="title-popup">
+        <h4 class="h4-popup">Login</h4>
+        <button class="btn-popup" id="close-login">
           <i class="fa fa-window-close" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="content-alert">
-        <p id="text-alert">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, omnis.</p>
-      </div>
+
+      <form action="" class="form" id="form-login">
+        <input class="form-input" id="form-email-login" type="email" placeholder="email@kenzie.com" required />
+        <input class="form-input" id="form-password-login" type="password" placeholder="Senha" required />
+        <button type="submit" class="form-submit-btn">Login</button>
+      </form>
+
+      <a href="" class="link-redirecionamento" id="redirecionar-cadastro">Cadastre-se Aqui!</a>
     </aside>
   </main>
 
-    <footer></footer>
-    <script type="module" src="./src/script/script.js"></script>
-  </body>
+  <aside class="container-popup display-none" id="popup-register">
+    <div class="title-popup">
+      <h4 class="h4-popup">Cadastrar-se</h4>
+      <button class="btn-popup" id="close-register">
+        <i class="fa fa-window-close" aria-hidden="true"></i>
+      </button>
+    </div>
+
+    <form action="" class="form" id="form-register">
+      <input class="form-input" id="form-name-register" type="text" placeholder="Nome" required />
+      <input class="form-input" id="form-email-register" type="email" placeholder="email@kenzie.com" required />
+      <input class="form-input" id="form-password-register" type="password" placeholder="Senha" required />
+      <button type="submit" class="form-submit-btn">Cadastrar</button>
+    </form>
+
+    <a href="" class="link-redirecionamento" id="redirecionar-login">Já sou cadastrado!</a>
+  </aside>
+
+  <aside class="alert-popup display-none" id="alert">
+    <div class="nav-alert">
+      <h5>Error!</h5>
+      <button class="close-alert" id="close-alert">
+        <i class="fa fa-window-close" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="content-alert">
+      <p id="text-alert">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga, omnis.</p>
+    </div>
+  </aside>
+  </main>
+
+  <footer></footer>
+  <script type="module" src="./src/script/script.js"></script>
+</body>
+
 </html>

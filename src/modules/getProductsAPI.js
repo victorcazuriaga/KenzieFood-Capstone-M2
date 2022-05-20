@@ -1,5 +1,9 @@
-import {Api} from './Api.js';
-import {Template} from './Template.js';
+import {
+  Api
+} from './Api.js';
+import {
+  Template
+} from './Template.js';
 
 export class productsApi {
   static token = sessionStorage.getItem('token');
@@ -11,7 +15,13 @@ export class productsApi {
   static renderFromCart(arrProdutos) {
     arrProdutos.forEach(product => {
       const item = product.products;
-      const {nome, preco, categoria, imagem, id} = item;
+      const {
+        nome,
+        preco,
+        categoria,
+        imagem,
+        id
+      } = item;
 
       //Verificacao do produto--------------------------
       const verificacao = document.getElementById(`qnt${id}`);
