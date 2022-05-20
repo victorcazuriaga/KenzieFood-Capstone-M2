@@ -2,8 +2,11 @@ import {Api} from './Api.js';
 import {Filter} from './filter.js';
 import {Storage} from './localStorage.js';
 import {productsApi} from './getProductsAPI.js';
+
 export class Template {
+  
   static prodctsDisplay = document.getElementById('products-display');
+  static productDashBoardDisplay=document.getElementsByClassName('product-container')[0];
 
   static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
 

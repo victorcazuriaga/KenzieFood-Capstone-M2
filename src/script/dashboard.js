@@ -60,4 +60,31 @@ const btnDeleteNao = document.querySelector('.delete-nao');
 
 closeDelete.addEventListener('click', () => {
   deletePopup.classList.add('display-none');
+}
+
+//---------- filtro por categoria --------------------------------
+
+const categoryButtons = document.querySelectorAll('.filter');
+
+function removeSelected() {
+  categoryButtons.forEach(button => button.classList.remove('selected'));
+}
+
+function filterByCategory(targetId) {
+  if (targetId == 'todos') {
+    Template.templateDashboard(itensUser);
+  } else {
+    const filteredArr = Filter.filterByInput(targetId, itensUser);
+    Template. templateDashboard(filteredArr);
+  }
+}
+
+categoryButtons.forEach(btn => {
+  btn.addEventListener('click', event => {
+    removeSelected();
+    event.currentTarget.classList.add('selected');
+    const filter = event.currentTarget.id;
+    filterByCategory(filter);
+  });
+
 });
