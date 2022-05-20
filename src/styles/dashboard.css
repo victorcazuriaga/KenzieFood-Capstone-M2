@@ -387,6 +387,10 @@ body {
   justify-content: center;
 }
 
+#add-product:hover {
+  color: #000;
+}
+
 .btn-delete {
   background-color: #f8f9fa;
   cursor: pointer;

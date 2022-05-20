@@ -55,26 +55,6 @@ closeAddProduct.addEventListener('click', () => {
 const deletePopup = document.getElementById('delete-popup');
 const closeDelete = document.getElementById('close-delete');
 
-const btnDeleteSim = document.querySelector('.delete-sim');
-const btnDeleteNao = document.querySelector('.delete-nao');
-
-export function deletarBtn(id) {
-  deletePopup.classList.remove('display-none');
-
-  btnDeleteSim.addEventListener('click', e => {
-    e.preventDefault();
-    Api.deletProduct(id);
-    deletePopup.classList.add('display-none');
-    location.reload();
-  });
-
-  btnDeleteNao.addEventListener('click', e => {
-    console.log('oi');
-    e.preventDefault();
-    deletePopup.classList.add('display-none');
-  });
-}
-
 closeDelete.addEventListener('click', () => {
   deletePopup.classList.add('display-none');
 });
@@ -129,7 +109,55 @@ class RegisterProduct {
       popEditar.classList.add('display-none');
       const main = document.getElementById('main');
       main.classList.remove('bg-dark');
+      Api.createProduct().then(res => location.reload());
     });
   }
 }
 RegisterProduct.registerProduct();
+
+//------------------------- editar um produto
+// const popupEditar = document.getElementById('popup-editar');
+// const popupInputs = document.getElementsByClassName('form-input');
+// const inputCategory = document.getElementById('select-form-editar');
+// const confirmEdit = document.getElementById('editar');
+// const editButton = document.getElementsByClassName('fa-solid fa-pen');
+
+// for (let i = 0; i < editButton.length; i++) {
+//   editButton[i].addEventListener('click', () => {
+//     popupEditar.classList.remove('display-none');
+//     popupInputs[5].value = itensUser[i].nome;
+//     inputCategory.value = itensUser[i].categoria;
+//     popupInputs[6].value = itensUser[i].descricao;
+//     popupInputs[7].value = itensUser[i].preco;
+//     popupInputs[8].value = itensUser[i].imagem;
+//     confirmEdit.addEventListener('click', async e => {
+//       e.preventDefault();
+//       const productNewInfos = {
+//         nome: popupInputs[5].value,
+//         descricao: popupInputs[6].value,
+//         categoria: inputCategory.value,
+//         preco: popupInputs[7].value,
+//         imagem: popupInputs[8].value,
+//       };
+//       const returnApi = await Api.editProduct(productNewInfos, itensUser[i].id);
+//       if (returnApi === 'Produto Atualizado') {
+//         alert('Produto atualizado com sucesso');
+//         location.reload();
+//       } else if (returnApi == 'Validation error: Campo nome deve ter entre 4 a 150 caracteres') {
+//         alert('Error, Campo de nome deve ter entre 4 a 150 caracter');
+//       } else if (
+//         returnApi == 'Validation error: Campo descricao não pode ser vazio' ||
+//         returnApi.error ==
+//           'preco must be a `number` type, but the final value was: `NaN` (cast from the value `""`).'
+//       ) {
+//         alert('Nenhum Campo pode ser vazio!');
+//       } else if (
+//         returnApi == 'Validation error: Campo descricao não pode ultrapassar 500 caracteres'
+//       ) {
+//         alert('a descrição deve conter letras!');
+//       } else if (returnApi.error == 'Formato de imagem invalido, deve ser uma url') {
+//         alert('a Imagem deve ser uma Url');
+//       }
+//     });
+//   });
+//  }
