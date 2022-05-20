@@ -375,8 +375,11 @@ body {
 .close-delete i {
   color: #ff2253;
 }
+.delete-popup {
+  background: #fff;
+}
 .content-delete {
-  height: 65%;
+  height: 66%;
   display: flex;
   text-align: center;
   align-items: center;
