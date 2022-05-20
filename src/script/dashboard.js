@@ -61,7 +61,7 @@ const btnDeleteNao = document.querySelector('.delete-nao');
 
 closeDelete.addEventListener('click', () => {
   deletePopup.classList.add('display-none');
-}
+});
 
 //---------- filtro por categoria --------------------------------
 
@@ -76,7 +76,7 @@ function filterByCategory(targetId) {
     Template.templateDashboard(itensUser);
   } else {
     const filteredArr = Filter.filterByInput(targetId, itensUser);
-    Template. templateDashboard(filteredArr);
+    Template.templateDashboard(filteredArr);
   }
 }
 
@@ -87,7 +87,6 @@ categoryButtons.forEach(btn => {
     const filter = event.currentTarget.id;
     filterByCategory(filter);
   });
-
 });
 
 //------------------------- Editar produto => dentro de uma funcao e dps direto na renderizacao
