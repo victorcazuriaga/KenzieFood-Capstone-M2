@@ -1,6 +1,6 @@
-import {Api} from '../modules/Api.js';
-import {Template} from '../modules/Template.js';
-import {Filter} from '../modules/filter.js';
+import { Api } from '../modules/Api.js';
+import { Template } from '../modules/Template.js';
+import { Filter } from '../modules/filter.js';
 Api.token = sessionStorage.getItem('token', Api.token);
 
 const itensUser = await Api.getPrivate();
@@ -62,7 +62,7 @@ function filterByCategory(targetId) {
     Template.templateDashboard(itensUser);
   } else {
     const filteredArr = Filter.filterByInput(targetId, itensUser);
-    Template. templateDashboard(filteredArr);
+    Template.templateDashboard(filteredArr);
   }
 }
 
@@ -74,3 +74,24 @@ categoryButtons.forEach(btn => {
     filterByCategory(filter);
   });
 });
+//
+class RegisterProduct {
+
+  static registerProduct() {
+    const submit = document.querySelector(".form");
+    console.log(submit)
+    submit.addEventListener("submit", (event) => {
+      event.preventDefault()
+      let formRegister = [...document.querySelectorAll('.form-input')].reduce((acc, cur) => ({ ...acc, [cur.name]: cur.value }), {});
+      Api.createProduct(formRegister)
+
+      const popEditar = document.getElementById("popup-novoProduto")
+      popEditar.classList.add("display-none")
+      const main = document.getElementById('main');
+      main.classList.remove('bg-dark')
+    })
+
+  }
+
+}
+RegisterProduct.registerProduct()

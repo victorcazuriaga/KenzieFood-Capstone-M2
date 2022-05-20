@@ -37,9 +37,9 @@ export class Api {
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
-      
+
     Api.token = token;
-   
+
     return token;
   }
 
@@ -120,11 +120,13 @@ export class Api {
  */
 
   static async createProduct(product) {
+    const token = sessionStorage.getItem('token');
+
     const response = await fetch('https://api-kenzie-food.herokuapp.com/my/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${Api.token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(product),
     })
