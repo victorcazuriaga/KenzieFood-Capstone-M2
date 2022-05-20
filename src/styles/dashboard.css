@@ -342,6 +342,69 @@ body {
 .link-redirecionamento:hover {
   color: #ff2253;
 }
+
+/* Delete -----------------------------------*/
+.delete-popup {
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 250px;
+  width: 400px;
+  border-radius: 12px;
+  border: 1.5px solid #000;
+  z-index: 10;
+}
+
+.nav-delete {
+  background: #f8f9fa;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid #000;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.close-delete {
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-size: 26px;
+}
+.close-delete i {
+  color: #ff2253;
+}
+.content-delete {
+  height: 65%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding: 4px 10px;
+  justify-content: center;
+}
+
+.btn-delete {
+  background-color: #f8f9fa;
+  cursor: pointer;
+  margin-right: 15px;
+  position: relative;
+  width: 30%;
+  left: 69px;
+  bottom: 35px;
+  padding: 15px 20px;
+  border-radius: 32px;
+  transition: all 0.5s;
+}
+
+.delete-sim:hover {
+  color: rgb(42, 185, 42);
+}
+
+.delete-nao:hover {
+  color: #fc0c40;
+}
+
 /* display-none sempre por ultimo plz */
 .display-none {
   display: none !important;
