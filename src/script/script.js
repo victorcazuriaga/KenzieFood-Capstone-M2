@@ -152,7 +152,6 @@ formRegister.addEventListener('submit', async event => {
   };
 
   const response = await Api.registerUser(newUser)
-  console.log(response)
    if (response !== 'User Already Exists!') {
       alert('Cadastro realizado com sucesso!')
       registerForm.classList.add('display-none')
@@ -175,9 +174,9 @@ formLogin.addEventListener('submit', async event => {
   };
 
   const userToken = await Api.login(userInfos);
-  console.log(userToken);
+  
 
-  console.log(Api.token);
+
 
   if (userToken.error === `Email: ${inputsForm[0].value} does not exists`) {
     alert('O email informado não existe');
@@ -185,7 +184,7 @@ formLogin.addEventListener('submit', async event => {
     alert('Senha invalida');
   } else {
     sessionStorage.setItem('token', Api.token);
-    console.log(Api.token);
+    
     location.reload();
   }
 });

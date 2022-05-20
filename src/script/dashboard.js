@@ -120,30 +120,30 @@ for (let i = 0; i < editButton.length; i++) {
     editButton[i].addEventListener('click', () => {
         popupEditar.classList.remove('display-none')
 
-        popupInputs[4].value = itensUser[i].nome
+        popupInputs[5].value = itensUser[i].nome
         inputCategory.value = itensUser[i].categoria
-        popupInputs[5].value = itensUser[i].descricao
-        popupInputs[6].value = itensUser[i].preco
-        popupInputs[7].value = itensUser[i].imagem
+        popupInputs[6].value = itensUser[i].descricao
+        popupInputs[7].value = itensUser[i].preco
+        popupInputs[8].value = itensUser[i].imagem
 
 
 
         confirmEdit.addEventListener('click', async (e) => {
             e.preventDefault()
-           
+
             const productNewInfos = {
-                nome: popupInputs[4].value,
-                descricao: popupInputs[5].value,
+                nome: popupInputs[5].value,
+                descricao: popupInputs[6].value,
                 categoria: inputCategory.value,
-                preco: popupInputs[6].value,
-                imagem: popupInputs[7].value
+                preco: popupInputs[7].value,
+                imagem: popupInputs[8].value
             }
             const returnApi = await Api.editProduct(productNewInfos, itensUser[i].id)
-            
+
 
             if (returnApi === 'Produto Atualizado') {
                 alert('Produto atualizado com sucesso')
-                    location.reload() 
+                location.reload()
             } else if (returnApi == 'Validation error: Campo nome deve ter entre 4 a 150 caracteres') {
                 alert('Error, Campo de nome deve ter entre 4 a 150 caracter')
             } else if (returnApi == 'Validation error: Campo descricao não pode ser vazio' || returnApi.error == 'preco must be a `number` type, but the final value was: `NaN` (cast from the value `""`).') {
@@ -159,3 +159,30 @@ for (let i = 0; i < editButton.length; i++) {
 
 
 
+//--------------------------------- Register Product
+class RegisterProduct {
+    static registerProduct() {
+        const submit = document.querySelector('.form');
+        submit.addEventListener('submit', event => {
+            event.preventDefault();
+            let formRegister = [...document.querySelectorAll('.form-input')].reduce(
+                (acc, cur) => ({
+                    ...acc,
+                    [cur.name]: cur.value
+                }), {}
+            );
+            Api.createProduct(formRegister);
+
+            const popEditar = document.getElementById('popup-novoProduto');
+            popEditar.classList.add('display-none');
+            const main = document.getElementById('main');
+            main.classList.remove('bg-dark');
+            alert('Produto Criado')
+            location.reload()
+        });
+    }
+}
+RegisterProduct.registerProduct();
+
+
+//--------------------------------- Delect Product

@@ -1,12 +1,20 @@
-import {Api} from './Api.js';
-import {Filter} from './filter.js';
-import {Storage} from './localStorage.js';
-import {productsApi} from './getProductsAPI.js';
+import {
+  Api
+} from './Api.js';
+import {
+  Filter
+} from './filter.js';
+import {
+  Storage
+} from './localStorage.js';
+import {
+  productsApi
+} from './getProductsAPI.js';
 
 export class Template {
-  
+
   static prodctsDisplay = document.getElementById('products-display');
-  static productDashBoardDisplay=document.getElementsByClassName('product-container')[0];
+  static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
 
   static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
 
@@ -77,7 +85,13 @@ export class Template {
 
   static addToCart(product) {
     const item = product[0];
-    const {nome, preco, categoria, imagem, id} = item;
+    const {
+      nome,
+      preco,
+      categoria,
+      imagem,
+      id
+    } = item;
 
     //Verificacao do produto
     const verificacao = document.getElementById(`qnt${id}`);

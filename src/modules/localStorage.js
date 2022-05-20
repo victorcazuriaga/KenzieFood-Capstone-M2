@@ -1,4 +1,6 @@
-import {Template} from './Template.js';
+import {
+  Template
+} from './Template.js';
 
 export class Storage {
   static getLocalStorage() {
@@ -49,7 +51,13 @@ export class Storage {
     let arrMapeada = arrProducts.map(product => product[0]);
 
     arrMapeada.forEach(produto => {
-      const {nome, preco, categoria, imagem, id} = produto;
+      const {
+        nome,
+        preco,
+        categoria,
+        imagem,
+        id
+      } = produto;
 
       //Verificacao do produto
       const verificacao = document.getElementById(`qnt${id}`);

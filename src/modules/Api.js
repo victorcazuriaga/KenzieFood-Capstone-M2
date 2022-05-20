@@ -13,12 +13,12 @@ export class Api {
 
   static async registerUser(data) {
     const response = await fetch('https://api-kenzie-food.herokuapp.com/auth/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
@@ -28,18 +28,18 @@ export class Api {
 
   static async login(userInfos) {
     const token = await fetch('https://api-kenzie-food.herokuapp.com/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userInfos),
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInfos),
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
-      
+
     Api.token = token;
-   
+
     return token;
   }
 
@@ -57,13 +57,13 @@ export class Api {
     const token = sessionStorage.getItem('token');
 
     const response = await fetch('https://api-kenzie-food.herokuapp.com/cart/add', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(productId),
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(productId),
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
@@ -74,11 +74,11 @@ export class Api {
 
   static async cartGet(token) {
     const response = await fetch(`https://api-kenzie-food.herokuapp.com/cart/`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
@@ -92,12 +92,12 @@ export class Api {
     const token = sessionStorage.getItem('token');
 
     const response = await fetch(`https://api-kenzie-food.herokuapp.com/cart/remove/${idItem}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-    })
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
@@ -120,14 +120,16 @@ export class Api {
  */
 
   static async createProduct(product) {
+    const token = sessionStorage.getItem('token');
+
     const response = await fetch('https://api-kenzie-food.herokuapp.com/my/products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Api.token}`,
-      },
-      body: JSON.stringify(product),
-    })
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(product),
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
@@ -138,12 +140,12 @@ export class Api {
 
   static async getPrivate() {
     const response = await fetch('https://api-kenzie-food.herokuapp.com/my/products', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Api.token}`,
-      },
-    })
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Api.token}`,
+        },
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
@@ -163,13 +165,13 @@ export class Api {
 
   static async editProduct(data, idProduct) {
     const response = await fetch(`https://api-kenzie-food.herokuapp.com/my/products/${idProduct}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Api.token}`,
-      },
-      body: JSON.stringify(data),
-    })
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Api.token}`,
+        },
+        body: JSON.stringify(data),
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
@@ -179,12 +181,12 @@ export class Api {
 
   static async deletProduct(idProduct) {
     const response = await fetch(`https://api-kenzie-food.herokuapp.com/my/products/${idProduct}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${Api.token}`,
-      },
-    })
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${Api.token}`,
+        },
+      })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);
