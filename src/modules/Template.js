@@ -1,21 +1,11 @@
-import {
-  Api
-} from './Api.js';
-import {
-  Filter
-} from './filter.js';
-import {
-  Storage
-} from './localStorage.js';
-import {
-  productsApi
-} from './getProductsAPI.js';
+import {Api} from './Api.js';
+import {Filter} from './filter.js';
+import {Storage} from './localStorage.js';
+import {productsApi} from './getProductsAPI.js';
+/* import {deletarBtn} from '../script/dashboard.js'; */
 
 export class Template {
-
   static prodctsDisplay = document.getElementById('products-display');
-  static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
-
   static productDashBoardDisplay = document.getElementsByClassName('product-container')[0];
 
   static async createProductList(productsArr) {
@@ -263,6 +253,7 @@ export class Template {
   }
   static templateDashboard(productsArr) {
     Template.productDashBoardDisplay.innerHTML = '';
+
     for (let i = 0; i < productsArr.length; i++) {
       //-------------criando as tags----------------------
       const divContainer = document.createElement('div');
@@ -290,11 +281,16 @@ export class Template {
       faTrash.className = 'fa-solid fa-trash';
 
       //-------------atribuindo valores----------------------
+
       imgProduct.src = productsArr[i].imagem;
       productTitle.innerText = productsArr[i].nome;
       productCategory.innerText = productsArr[i].categoria;
       productDescription.innerText = productsArr[i].descricao;
+      faTrash.addEventListener('click', () => {
+        deletarBtn(productsArr[i].id);
+      });
       //-------------append variaveis----------------------
+
       Template.productDashBoardDisplay.appendChild(divContainer);
       divContainer.appendChild(divTitle);
       divTitle.appendChild(imgProduct);
@@ -307,4 +303,5 @@ export class Template {
       productActions.appendChild(faTrash);
     }
   }
+
 }

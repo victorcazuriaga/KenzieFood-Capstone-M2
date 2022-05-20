@@ -180,13 +180,15 @@ export class Api {
   }
 
   static async deletProduct(idProduct) {
+    const token = sessionStorage.getItem('token');
+
     const response = await fetch(`https://api-kenzie-food.herokuapp.com/my/products/${idProduct}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${Api.token}`,
-        },
-      })
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then(res => res.json())
       .then(res => res)
       .catch(error => error);

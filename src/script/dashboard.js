@@ -1,20 +1,12 @@
-import {
-    Api
-} from '../modules/Api.js';
-import {
-    Template
-} from '../modules/Template.js';
-import {
-    Filter
-} from '../modules/filter.js';
-import {
-    productsApi
-} from '../modules/getProductsAPI.js';
+import{Template} from '../modules/Template.js'
+import { Api} from '../modules/Api.js';
+import {Filter} from '../modules/filter.js';
+
 Api.token = sessionStorage.getItem('token', Api.token);
 
 const itensUser = await Api.getPrivate();
 
-Template.templateDashboard(itensUser);
+  Template.templateDashboard(itensUser)
 
 //---------- Filtro pela barra de pesquisa--------------------------------
 
@@ -61,12 +53,28 @@ closeAddProduct.addEventListener('click', () => {
 });
 
 //------------------------- Excluir produto => dentro de uma funcao e dps direto na renderizacao
-
 const deletePopup = document.getElementById('delete-popup');
 const closeDelete = document.getElementById('close-delete');
 
 const btnDeleteSim = document.querySelector('.delete-sim');
 const btnDeleteNao = document.querySelector('.delete-nao');
+
+export function deletarBtn(id) {
+  deletePopup.classList.remove('display-none');
+
+  btnDeleteSim.addEventListener('click', e => {
+    e.preventDefault();
+    Api.deletProduct(id);
+    deletePopup.classList.add('display-none');
+    location.reload();
+  });
+
+  btnDeleteNao.addEventListener('click', e => {
+    console.log('oi');
+    e.preventDefault();
+    deletePopup.classList.add('display-none');
+  });
+}
 
 closeDelete.addEventListener('click', () => {
     deletePopup.classList.add('display-none');
@@ -161,17 +169,15 @@ for (let i = 0; i < editButton.length; i++) {
 
 //--------------------------------- Register Product
 class RegisterProduct {
-    static registerProduct() {
-        const submit = document.querySelector('.form');
-        submit.addEventListener('submit', event => {
-            event.preventDefault();
-            let formRegister = [...document.querySelectorAll('.form-input')].reduce(
-                (acc, cur) => ({
-                    ...acc,
-                    [cur.name]: cur.value
-                }), {}
-            );
-            Api.createProduct(formRegister);
+  static registerProduct() {
+    const submit = document.querySelector('.form');
+    submit.addEventListener('submit', event => {
+      event.preventDefault();
+      let formRegister = [...document.querySelectorAll('.form-input')].reduce(
+        (acc, cur) => ({...acc, [cur.name]: cur.value}),
+        {}
+      );
+      Api.createProduct(formRegister);
 
             const popEditar = document.getElementById('popup-novoProduto');
             popEditar.classList.add('display-none');
@@ -185,4 +191,3 @@ class RegisterProduct {
 RegisterProduct.registerProduct();
 
 
-//--------------------------------- Delect Product
